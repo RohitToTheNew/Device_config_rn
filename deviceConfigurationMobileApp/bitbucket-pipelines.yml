@@ -1,0 +1,119 @@
+image: node:latest
+
+definitions:
+  steps:
+    - step: &build-step
+        name: SonarQube Analysis
+        image: sonarsource/sonar-scanner-cli:latest
+        caches:
+          - sonar
+        script:
+          - sonar-scanner > sonar_report.txt
+          - SONAR_URL=$(tail -n 10 sonar_report.txt | head -n 1 | grep -o 'https://[^ ]*' )
+          - echo "export SONAR_URL=$SONAR_URL" > sonar.sh
+        variables:
+          SONAR_HOST_URL: ${SONAR_HOST_URL}
+          SONAR_TOKEN: ${SONAR_TOKEN}
+        clone:
+          depth: full
+        artifacts: # define the artifacts to be passed to each future step
+          - sonar.sh
+
+    - step: &snyk-build
+        name: Snyk Analysis
+        caches:
+          - node
+        script:
+          - npm install
+          - npm install -g snyk
+          - snyk auth $SNYK_TOKEN
+          - snyk test --package-manager=npm --file=package.json --org=$ORGANIZATION --json -d || [ "$DONT_BREAK_BUILD" = "true" ]
+          - snyk monitor --package-manager=npm --file=package.json --org=$ORGANIZATION > snyk_report.txt
+          - SNYK_URL=$(tail -n 6 snyk_report.txt | head -n 1 | grep -o 'https://[^ ]*' ) 
+          - echo "export SNYK_URL=$SNYK_URL" > snyk.sh
+        clone:
+          depth: full
+        artifacts: # define the artifacts to be passed to each future step
+          - snyk.sh
+
+    - step: &send-mail
+        name: Sending Email To Owner
+        script: 
+          - source sonar.sh
+          - source snyk.sh
+          - npm install git
+          - git log --pretty=format:'%ae' -n 1 $BITBUCKET_COMMIT > commit_email.txt
+          - TRIGGERER_EMAIL=`cat commit_email.txt`
+          - pipe: atlassian/email-notify:0.3.4
+            variables:
+              USERNAME: $USERNAME
+              PASSWORD: $SENDGRID_API_KEY
+              FROM: $EMAIL_ADDRESS
+              TO: $TRIGGERER_EMAIL
+              HOST: $HOST
+              BODY_PLAIN: Here is the url of generated reports. <br> You can view full report by clicking on the respective link of sonarqube and snyk. <br> <b>Sonarqube_Report</b> $SONAR_URL <br> <b>Snyk_Report</b> $SNYK_URL 
+
+    - step: &send-mail-to-common-DL
+        name: Sending Email To Common DL
+        script: 
+          - source sonar.sh
+          - source snyk.sh
+          - pipe: atlassian/email-notify:0.3.4
+            variables:
+              USERNAME: $USERNAME
+              PASSWORD: $SENDGRID_API_KEY
+              FROM: $EMAIL_ADDRESS
+              TO: $DEVOPS_EMAIL
+              HOST: $HOST
+              BODY_PLAIN: Here is the url of generated reports. <br> You can view full report by clicking on the respective link of sonarqube and snyk. <br> <b>Sonarqube_Report</b> $SONAR_URL <br> <b>Snyk_Report</b> $SNYK_URL 
+
+  caches:
+    sonar: ~/.sonar
+
+pipelines:
+  default:
+    - parallel:
+        - step: *build-step
+          allow_failure: true
+        - step: *snyk-build
+          allow_failure: true
+    - step: *send-mail
+      allow_failure: true
+  branches:
+    develop: # Only Run on the develop branch
+      - parallel:
+          - step: *build-step # Sonarqube Check
+            allow_failure: true
+          - step: *snyk-build # Snyk Security
+            allow_failure: true
+      - parallel:
+          - step: *send-mail
+            allow_failure: true
+          - step: *send-mail-to-common-DL
+            allow_failure: true
+
+    main: # Only Run on the main branch
+      - parallel:
+          - step: *build-step # Sonarqube Check
+            allow_failure: true
+          - step: *snyk-build # Snyk Security
+            allow_failure: true
+      - parallel:
+          - step: *send-mail
+            allow_failure: true
+          - step: *send-mail-to-common-DL
+            allow_failure: true
+
+
+  pull-requests:
+    branches:
+      - develop
+      - main
+    '**':
+      - parallel:
+          - step: *build-step
+            allow_failure: true
+          - step: *snyk-build
+            allow_failure: true
+      - step: *send-mail
+        allow_failure: true
