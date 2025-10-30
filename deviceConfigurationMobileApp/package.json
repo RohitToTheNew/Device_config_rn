@@ -66,7 +66,6 @@
     "react-native-tab-view": "^3.3.0",
     "react-native-toast-message": "^2.3.3",
     "react-redux": "^7.2.6",
-    "react-test-renderer": "17.0.2",
     "redux": "^4.1.2",
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.5.4",
@@ -84,6 +83,7 @@
     "@react-native/eslint-config": "0.80.0",
     "@react-native/metro-config": "0.80.0",
     "@react-native/typescript-config": "0.80.0",
+    "@testing-library/react-native": "^13.3.3",
     "@types/jest": "^29.5.13",
     "@types/react": "^19.1.0",
     "@types/react-test-renderer": "^19.1.0",
@@ -95,5 +95,43 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "jest": {
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|@react-native|@react-navigation|react-native-quick-base64|react-native-base64|react-native-ble-plx|react-native-device-info|react-native-localize|react-native-permissions|react-native-splash-screen|react-native-keyboard-aware-scroll-view|react-native-toast-message|react-native-qrcode-scanner|react-native-fs|react-native-dash|react-native-skeleton-placeholder|react-native-mail|react-native-exit-app|lottie-react-native|react-native-pager-view|react-native-tab-view)/)"
+    ],
+    "moduleNameMapper": {
+      "\\.(png|jpg|ico|jpeg|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__tests__/__mocks__/image-mock.js"
+    },
+    "testMatch": [
+      "**/?(*-)+(test).[jt]s?(x)"
+    ],
+    "verbose": false,
+    "coverageDirectory": "<rootDir>/__tests__/coverage",
+    "setupFiles": [
+      "<rootDir>/__tests__/__mocks__/navigation-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-redux-mock.js",
+      "<rootDir>/__tests__/__mocks__/asyncStorage-mock.js",
+      "<rootDir>/__tests__/__mocks__/redux-persist-mock.js",
+      "<rootDir>/__tests__/__mocks__/lottie-react-native-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-base64-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-ble-plx-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-exit-app-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-localize-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-device-info-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-permissions-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-splash-screen-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-keyboard-aware-scroll-view-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-toast-message-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-qrcode-scanner-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-fs-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-dash-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-skeleton-placeholder-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-mail-mock.js",
+      "<rootDir>/__tests__/__mocks__/react-native-backhandler-mock.js",
+      "<rootDir>/__tests__/__mocks__/sentry-mock.js",
+      "<rootDir>/__tests__/__mocks__/utils-mock.js"
+    ]
   }
 }

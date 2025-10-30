@@ -1,3 +1,31 @@
 {
-  "extends": "@react-native/typescript-config"
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    "jsx": "react",
+    /* Language and Environment */
+    "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "lib": [
+      "es6"
+    ] /* Specify a set of bundled library declaration files that describe the target runtime environment. */,
+    /* Modules */
+    "module": "CommonJS" /* Specify what module code is generated. */,
+    "resolveJsonModule": true /* Enable importing .json files. */,
+    /* JavaScript Support */
+    "allowJs": false /* Changed from true to false because of overwrite errors. */,
+    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+    /* Type Checking */
+    "strict": true /* Enable all strict type-checking options. */,
+    "noImplicitAny": true /* Enable error reporting for expressions and declarations with an implied 'any' type. */,
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */
+  },
+  "exclude": [
+    "tests",
+    "node_modules"
+  ],
+  "include": [
+    "**/*.tsx",
+    "./src/@types",
+    "src/navigation/rootNavigator.d.ts"
+  ]
 }

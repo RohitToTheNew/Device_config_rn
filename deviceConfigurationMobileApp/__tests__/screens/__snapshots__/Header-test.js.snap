@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`on Header mounting renders Header correctly 1`] = `null`;

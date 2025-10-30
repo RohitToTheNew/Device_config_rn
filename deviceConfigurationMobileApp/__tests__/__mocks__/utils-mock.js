@@ -1,0 +1,36 @@
+// Mock for Utils
+jest.mock('../../src/utils', () => ({
+    __esModule: true,
+    default: {
+        Log: jest.fn(),
+        logType: {
+            log: 'log',
+            error: 'error',
+        },
+        showToast: jest.fn(),
+        isIOS: false,
+        isAndroid: true,
+        isIpad: false,
+        tablet: false,
+        encrypt: jest.fn((str) => str),
+        decrypt: jest.fn((str) => str),
+        isIphone8: jest.fn(() => false),
+        splitJoin: jest.fn((str) => str.split('.').join('')),
+        validateIP: jest.fn(() => true),
+        hexToBytes: jest.fn(),
+        encodeToHex: jest.fn(),
+        IsJsonString: jest.fn(() => true),
+        decodeBase64: jest.fn((str) => str),
+        encodeBase64: jest.fn((str) => str),
+        capitalizeText: jest.fn((str) => str.charAt(0).toUpperCase() + str.slice(1)),
+        timeoutDuration: 20000,
+        foldableDevice: jest.fn(() => false),
+        encodeToBytesArray: jest.fn(),
+        isFoldableDevice: false,
+        isInfoView: jest.fn(() => false),
+        isMS700: jest.fn(() => true),
+        isCZA1300: jest.fn(() => false),
+        stringArrayToByteArray: jest.fn(),
+    },
+}));
+

@@ -2,6 +2,8 @@ const identifire = 'manage-school-log: ';
 import { Alert } from 'react-native';
 import RNFS from 'react-native-fs';
 import Mailer from 'react-native-mail';
+import Utils from '../../utils';
+import { translate } from '../../translations/translationHelper';
 
 /**
  * function to get saved Schools data from local storage
@@ -48,7 +50,7 @@ const writeDataTolocalStorage = async schools => {
     await RNFS.writeFile(path, data, 'utf8');
     return `FILE WRITTEN!`;
   } catch (err) {
-    Utils.Log(Utils.logType.error, 'error in writeDataTolocalStorage',err)
+    Utils.Log(Utils.logType.error, 'error in writeDataTolocalStorage', err)
     return `Error while writing`;
   }
 };
@@ -96,14 +98,14 @@ function sendCSVAsMail(schoolName, fileName) {
           [
             {
               text: 'Ok',
-              onPress: () => {},
+              onPress: () => { },
             },
             {
               text: 'Cancel',
-              onPress: () => {},
+              onPress: () => { },
             },
           ],
-          {cancelable: true},
+          { cancelable: true },
         );
       },
     );

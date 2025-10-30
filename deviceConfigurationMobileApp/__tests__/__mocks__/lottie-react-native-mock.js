@@ -1,0 +1,1 @@
+jest.mock('lottie-react-native', () =>"<Lottie/>");

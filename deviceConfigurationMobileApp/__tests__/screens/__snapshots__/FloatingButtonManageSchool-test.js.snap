@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`on Floating button for Manage School render should render Floating button correctly 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  forwardedRef={[Function]}
+  nativeID="animatedComponent"
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "alignSelf": "center",
+      "backgroundColor": "#5D9D52",
+      "borderRadius": 8,
+      "bottom": 40,
+      "flexDirection": "row",
+      "height": 108,
+      "justifyContent": "center",
+      "opacity": 1,
+      "position": "absolute",
+      "width": 396,
+    }
+  }
+  testID="manageSchoolButton"
+>
+  <
+    height={48}
+    width={48}
+  />
+  <Text
+    style={
+      {
+        "color": "#FFFFFF",
+        "fontFamily": "CenturyGothic",
+        "fontSize": 24,
+        "fontWeight": "700",
+        "lineHeight": 32,
+        "marginStart": 27,
+      }
+    }
+  >
+    [missing "en.manageSchools" translation]
+  </Text>
+</View>
+`;

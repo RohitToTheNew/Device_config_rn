@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`on landing to bluetooth devices list should render devices list correctly 1`] = `null`;

@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`on landing to add device with scan result containing data should render add device correctly 1`] = `null`;
+
+exports[`on landing to add device with scan result containing no data should render add device correctly 1`] = `null`;
