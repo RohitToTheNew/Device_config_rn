@@ -2,11 +2,26 @@
 
 exports[`on Floating button for Manage School render should render Floating button correctly 1`] = `
 <View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
-  forwardedRef={[Function]}
-  nativeID="animatedComponent"
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -20,7 +35,7 @@ exports[`on Floating button for Manage School render should render Floating butt
       "alignSelf": "center",
       "backgroundColor": "#5D9D52",
       "borderRadius": 8,
-      "bottom": 40,
+      "bottom": 60,
       "flexDirection": "row",
       "height": 108,
       "justifyContent": "center",
@@ -40,9 +55,9 @@ exports[`on Floating button for Manage School render should render Floating butt
       {
         "color": "#FFFFFF",
         "fontFamily": "CenturyGothic",
-        "fontSize": 24,
+        "fontSize": 26,
         "fontWeight": "700",
-        "lineHeight": 32,
+        "lineHeight": 30,
         "marginStart": 27,
       }
     }

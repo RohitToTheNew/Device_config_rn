@@ -1,3 +1,1364 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`on Output screen mounting renders Output screen correctly 1`] = `null`;
+exports[`on Output screen mounting renders Output screen correctly 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    contentContainerStyle={
+      {
+        "flexGrow": 1,
+        "paddingBottom": 60,
+      }
+    }
+    data={
+      [
+        {
+          "charactersticId": 11,
+          "defaultValue": "-10",
+          "isDisabled": false,
+          "isMuted": false,
+          "settingAdvName": "ae_ms.volume.out0",
+          "settingName": "Speaker Output",
+          "value": "-10",
+        },
+        {
+          "charactersticId": 22,
+          "defaultValue": "-10",
+          "isDisabled": false,
+          "isMuted": false,
+          "settingAdvName": "ae_ms.volume.out1",
+          "settingName": "Remote Port 1",
+          "value": "-10",
+        },
+        {
+          "charactersticId": 33,
+          "defaultValue": "-10",
+          "isDisabled": false,
+          "isMuted": false,
+          "settingAdvName": "ae_ms.volume.out2",
+          "settingName": "Remote Port 2",
+          "value": "-10",
+        },
+        {
+          "charactersticId": 44,
+          "defaultValue": "-10",
+          "isDisabled": false,
+          "isMuted": false,
+          "settingAdvName": "ae_ms.volume.out3",
+          "settingName": "Remote Port 3",
+          "value": "-10",
+        },
+        {
+          "charactersticId": 55,
+          "defaultValue": "-10",
+          "isDisabled": false,
+          "isMuted": true,
+          "settingAdvName": "ae_ms.volume.out4",
+          "settingName": "ALD Output",
+          "value": "-10",
+        },
+      ]
+    }
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={0.0001}
+    showsVerticalScrollIndicator={false}
+    stickyHeaderIndices={[]}
+    style={
+      {
+        "marginTop": 20,
+      }
+    }
+    testID="outputVolumeSettingsList"
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            {
+              "marginHorizontal": 32,
+              "marginTop": 36,
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginBottom": 12,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#484949",
+                  "fontFamily": "CenturyGothic",
+                  "fontSize": 26,
+                  "fontWeight": "700",
+                  "lineHeight": 30,
+                }
+              }
+            >
+              Speaker Output
+            </Text>
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              hitSlop={
+                {
+                  "bottom": 20,
+                  "top": 20,
+                }
+              }
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                {
+                  "opacity": 1,
+                  "paddingHorizontal": 20,
+                }
+              }
+              testID="toggleMuteButton0"
+            >
+              <
+                height={40}
+                width={40}
+              />
+            </View>
+          </View>
+          <View
+            style={
+              {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "bottom": 0,
+                  "opacity": 0,
+                  "position": "absolute",
+                  "transform": [
+                    {
+                      "translateX": 0,
+                    },
+                    {
+                      "translateY": 0,
+                    },
+                  ],
+                }
+              }
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#484949",
+                      "fontFamily": "CenturyGothic",
+                      "fontSize": 18,
+                      "fontWeight": "700",
+                      "lineHeight": 24,
+                      "top": 90,
+                    },
+                    {
+                      "marginStart": 12,
+                    },
+                  ]
+                }
+              >
+                -10
+                 db
+              </Text>
+            </View>
+          </View>
+          <View
+            animateTransitions={true}
+            animationType="timing"
+            disabled={false}
+            onLayout={[Function]}
+            onSlidingComplete={[Function]}
+            step={1}
+            style={
+              [
+                {
+                  "height": 40,
+                  "justifyContent": "center",
+                },
+                {},
+                {
+                  "alignSelf": "center",
+                  "width": 646,
+                },
+              ]
+            }
+            testID="sliderComponent0"
+            trackClickable={true}
+            trackMarks={[]}
+            value="-10"
+          >
+            <View
+              onLayout={[Function]}
+              renderToHardwareTextureAndroid={true}
+              style={
+                [
+                  {
+                    "borderRadius": 2,
+                    "height": 4,
+                  },
+                  {
+                    "backgroundColor": "#b3b3b3",
+                  },
+                  {
+                    "borderRadius": 15,
+                    "height": 12,
+                  },
+                ]
+              }
+            />
+            <View
+              collapsable={false}
+              renderToHardwareTextureAndroid={true}
+              style={
+                {
+                  "backgroundColor": "#003D7D",
+                  "borderRadius": 15,
+                  "height": 12,
+                  "left": 0,
+                  "opacity": 0,
+                  "position": "absolute",
+                  "width": 0,
+                }
+              }
+            />
+            <View
+              collapsable={false}
+              onLayout={[Function]}
+              style={
+                {
+                  "opacity": 0,
+                  "position": "absolute",
+                  "transform": [
+                    {
+                      "translateX": 0,
+                    },
+                    {
+                      "translateY": 0,
+                    },
+                  ],
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "backgroundColor": "#003D7D",
+                    "borderRadius": 4,
+                    "height": 36,
+                    "width": 36,
+                  }
+                }
+              />
+            </View>
+            <View
+              onMoveShouldSetResponder={[Function]}
+              onMoveShouldSetResponderCapture={[Function]}
+              onResponderEnd={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderReject={[Function]}
+              onResponderRelease={[Function]}
+              onResponderStart={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              onStartShouldSetResponderCapture={[Function]}
+              style={
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  {
+                    "marginBottom": -20,
+                    "marginLeft": -20,
+                    "marginRight": -20,
+                    "marginTop": -20,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            {
+              "marginHorizontal": 32,
+              "marginTop": 36,
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginBottom": 12,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#484949",
+                  "fontFamily": "CenturyGothic",
+                  "fontSize": 26,
+                  "fontWeight": "700",
+                  "lineHeight": 30,
+                }
+              }
+            >
+              Remote Port 1
+            </Text>
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              hitSlop={
+                {
+                  "bottom": 20,
+                  "top": 20,
+                }
+              }
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                {
+                  "opacity": 1,
+                  "paddingHorizontal": 20,
+                }
+              }
+              testID="toggleMuteButton1"
+            >
+              <
+                height={40}
+                width={40}
+              />
+            </View>
+          </View>
+          <View
+            style={
+              {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "bottom": 0,
+                  "opacity": 0,
+                  "position": "absolute",
+                  "transform": [
+                    {
+                      "translateX": 0,
+                    },
+                    {
+                      "translateY": 0,
+                    },
+                  ],
+                }
+              }
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#484949",
+                      "fontFamily": "CenturyGothic",
+                      "fontSize": 18,
+                      "fontWeight": "700",
+                      "lineHeight": 24,
+                      "top": 90,
+                    },
+                    {
+                      "marginStart": 12,
+                    },
+                  ]
+                }
+              >
+                -10
+                 db
+              </Text>
+            </View>
+          </View>
+          <View
+            animateTransitions={true}
+            animationType="timing"
+            disabled={false}
+            onLayout={[Function]}
+            onSlidingComplete={[Function]}
+            step={1}
+            style={
+              [
+                {
+                  "height": 40,
+                  "justifyContent": "center",
+                },
+                {},
+                {
+                  "alignSelf": "center",
+                  "width": 646,
+                },
+              ]
+            }
+            testID="sliderComponent1"
+            trackClickable={true}
+            trackMarks={[]}
+            value="-10"
+          >
+            <View
+              onLayout={[Function]}
+              renderToHardwareTextureAndroid={true}
+              style={
+                [
+                  {
+                    "borderRadius": 2,
+                    "height": 4,
+                  },
+                  {
+                    "backgroundColor": "#b3b3b3",
+                  },
+                  {
+                    "borderRadius": 15,
+                    "height": 12,
+                  },
+                ]
+              }
+            />
+            <View
+              collapsable={false}
+              renderToHardwareTextureAndroid={true}
+              style={
+                {
+                  "backgroundColor": "#003D7D",
+                  "borderRadius": 15,
+                  "height": 12,
+                  "left": 0,
+                  "opacity": 0,
+                  "position": "absolute",
+                  "width": 0,
+                }
+              }
+            />
+            <View
+              collapsable={false}
+              onLayout={[Function]}
+              style={
+                {
+                  "opacity": 0,
+                  "position": "absolute",
+                  "transform": [
+                    {
+                      "translateX": 0,
+                    },
+                    {
+                      "translateY": 0,
+                    },
+                  ],
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "backgroundColor": "#003D7D",
+                    "borderRadius": 4,
+                    "height": 36,
+                    "width": 36,
+                  }
+                }
+              />
+            </View>
+            <View
+              onMoveShouldSetResponder={[Function]}
+              onMoveShouldSetResponderCapture={[Function]}
+              onResponderEnd={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderReject={[Function]}
+              onResponderRelease={[Function]}
+              onResponderStart={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              onStartShouldSetResponderCapture={[Function]}
+              style={
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  {
+                    "marginBottom": -20,
+                    "marginLeft": -20,
+                    "marginRight": -20,
+                    "marginTop": -20,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            {
+              "marginHorizontal": 32,
+              "marginTop": 36,
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginBottom": 12,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#484949",
+                  "fontFamily": "CenturyGothic",
+                  "fontSize": 26,
+                  "fontWeight": "700",
+                  "lineHeight": 30,
+                }
+              }
+            >
+              Remote Port 2
+            </Text>
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              hitSlop={
+                {
+                  "bottom": 20,
+                  "top": 20,
+                }
+              }
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                {
+                  "opacity": 1,
+                  "paddingHorizontal": 20,
+                }
+              }
+              testID="toggleMuteButton2"
+            >
+              <
+                height={40}
+                width={40}
+              />
+            </View>
+          </View>
+          <View
+            style={
+              {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "bottom": 0,
+                  "opacity": 0,
+                  "position": "absolute",
+                  "transform": [
+                    {
+                      "translateX": 0,
+                    },
+                    {
+                      "translateY": 0,
+                    },
+                  ],
+                }
+              }
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#484949",
+                      "fontFamily": "CenturyGothic",
+                      "fontSize": 18,
+                      "fontWeight": "700",
+                      "lineHeight": 24,
+                      "top": 90,
+                    },
+                    {
+                      "marginStart": 12,
+                    },
+                  ]
+                }
+              >
+                -10
+                 db
+              </Text>
+            </View>
+          </View>
+          <View
+            animateTransitions={true}
+            animationType="timing"
+            disabled={false}
+            onLayout={[Function]}
+            onSlidingComplete={[Function]}
+            step={1}
+            style={
+              [
+                {
+                  "height": 40,
+                  "justifyContent": "center",
+                },
+                {},
+                {
+                  "alignSelf": "center",
+                  "width": 646,
+                },
+              ]
+            }
+            testID="sliderComponent2"
+            trackClickable={true}
+            trackMarks={[]}
+            value="-10"
+          >
+            <View
+              onLayout={[Function]}
+              renderToHardwareTextureAndroid={true}
+              style={
+                [
+                  {
+                    "borderRadius": 2,
+                    "height": 4,
+                  },
+                  {
+                    "backgroundColor": "#b3b3b3",
+                  },
+                  {
+                    "borderRadius": 15,
+                    "height": 12,
+                  },
+                ]
+              }
+            />
+            <View
+              collapsable={false}
+              renderToHardwareTextureAndroid={true}
+              style={
+                {
+                  "backgroundColor": "#003D7D",
+                  "borderRadius": 15,
+                  "height": 12,
+                  "left": 0,
+                  "opacity": 0,
+                  "position": "absolute",
+                  "width": 0,
+                }
+              }
+            />
+            <View
+              collapsable={false}
+              onLayout={[Function]}
+              style={
+                {
+                  "opacity": 0,
+                  "position": "absolute",
+                  "transform": [
+                    {
+                      "translateX": 0,
+                    },
+                    {
+                      "translateY": 0,
+                    },
+                  ],
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "backgroundColor": "#003D7D",
+                    "borderRadius": 4,
+                    "height": 36,
+                    "width": 36,
+                  }
+                }
+              />
+            </View>
+            <View
+              onMoveShouldSetResponder={[Function]}
+              onMoveShouldSetResponderCapture={[Function]}
+              onResponderEnd={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderReject={[Function]}
+              onResponderRelease={[Function]}
+              onResponderStart={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              onStartShouldSetResponderCapture={[Function]}
+              style={
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  {
+                    "marginBottom": -20,
+                    "marginLeft": -20,
+                    "marginRight": -20,
+                    "marginTop": -20,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            {
+              "marginHorizontal": 32,
+              "marginTop": 36,
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginBottom": 12,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#484949",
+                  "fontFamily": "CenturyGothic",
+                  "fontSize": 26,
+                  "fontWeight": "700",
+                  "lineHeight": 30,
+                }
+              }
+            >
+              Remote Port 3
+            </Text>
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              hitSlop={
+                {
+                  "bottom": 20,
+                  "top": 20,
+                }
+              }
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                {
+                  "opacity": 1,
+                  "paddingHorizontal": 20,
+                }
+              }
+              testID="toggleMuteButton3"
+            >
+              <
+                height={40}
+                width={40}
+              />
+            </View>
+          </View>
+          <View
+            style={
+              {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "bottom": 0,
+                  "opacity": 0,
+                  "position": "absolute",
+                  "transform": [
+                    {
+                      "translateX": 0,
+                    },
+                    {
+                      "translateY": 0,
+                    },
+                  ],
+                }
+              }
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#484949",
+                      "fontFamily": "CenturyGothic",
+                      "fontSize": 18,
+                      "fontWeight": "700",
+                      "lineHeight": 24,
+                      "top": 90,
+                    },
+                    {
+                      "marginStart": 12,
+                    },
+                  ]
+                }
+              >
+                -10
+                 db
+              </Text>
+            </View>
+          </View>
+          <View
+            animateTransitions={true}
+            animationType="timing"
+            disabled={false}
+            onLayout={[Function]}
+            onSlidingComplete={[Function]}
+            step={1}
+            style={
+              [
+                {
+                  "height": 40,
+                  "justifyContent": "center",
+                },
+                {},
+                {
+                  "alignSelf": "center",
+                  "width": 646,
+                },
+              ]
+            }
+            testID="sliderComponent3"
+            trackClickable={true}
+            trackMarks={[]}
+            value="-10"
+          >
+            <View
+              onLayout={[Function]}
+              renderToHardwareTextureAndroid={true}
+              style={
+                [
+                  {
+                    "borderRadius": 2,
+                    "height": 4,
+                  },
+                  {
+                    "backgroundColor": "#b3b3b3",
+                  },
+                  {
+                    "borderRadius": 15,
+                    "height": 12,
+                  },
+                ]
+              }
+            />
+            <View
+              collapsable={false}
+              renderToHardwareTextureAndroid={true}
+              style={
+                {
+                  "backgroundColor": "#003D7D",
+                  "borderRadius": 15,
+                  "height": 12,
+                  "left": 0,
+                  "opacity": 0,
+                  "position": "absolute",
+                  "width": 0,
+                }
+              }
+            />
+            <View
+              collapsable={false}
+              onLayout={[Function]}
+              style={
+                {
+                  "opacity": 0,
+                  "position": "absolute",
+                  "transform": [
+                    {
+                      "translateX": 0,
+                    },
+                    {
+                      "translateY": 0,
+                    },
+                  ],
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "backgroundColor": "#003D7D",
+                    "borderRadius": 4,
+                    "height": 36,
+                    "width": 36,
+                  }
+                }
+              />
+            </View>
+            <View
+              onMoveShouldSetResponder={[Function]}
+              onMoveShouldSetResponderCapture={[Function]}
+              onResponderEnd={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderReject={[Function]}
+              onResponderRelease={[Function]}
+              onResponderStart={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              onStartShouldSetResponderCapture={[Function]}
+              style={
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  {
+                    "marginBottom": -20,
+                    "marginLeft": -20,
+                    "marginRight": -20,
+                    "marginTop": -20,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            {
+              "marginHorizontal": 32,
+              "marginTop": 36,
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginBottom": 12,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#484949",
+                  "fontFamily": "CenturyGothic",
+                  "fontSize": 26,
+                  "fontWeight": "700",
+                  "lineHeight": 30,
+                }
+              }
+            >
+              ALD Output
+            </Text>
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              hitSlop={
+                {
+                  "bottom": 20,
+                  "top": 20,
+                }
+              }
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                {
+                  "opacity": 1,
+                  "paddingHorizontal": 20,
+                }
+              }
+              testID="toggleMuteButton4"
+            >
+              <
+                height={40}
+                width={40}
+              />
+            </View>
+          </View>
+          <View
+            style={
+              {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "bottom": 0,
+                  "opacity": 0,
+                  "position": "absolute",
+                  "transform": [
+                    {
+                      "translateX": 0,
+                    },
+                    {
+                      "translateY": 0,
+                    },
+                  ],
+                }
+              }
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#484949",
+                      "fontFamily": "CenturyGothic",
+                      "fontSize": 18,
+                      "fontWeight": "700",
+                      "lineHeight": 24,
+                      "top": 90,
+                    },
+                    {
+                      "marginStart": 12,
+                    },
+                  ]
+                }
+              >
+                -10
+                 db
+              </Text>
+            </View>
+          </View>
+          <View
+            animateTransitions={true}
+            animationType="timing"
+            disabled={true}
+            onLayout={[Function]}
+            onSlidingComplete={[Function]}
+            step={1}
+            style={
+              [
+                {
+                  "height": 40,
+                  "justifyContent": "center",
+                },
+                {},
+                {
+                  "alignSelf": "center",
+                  "width": 646,
+                },
+              ]
+            }
+            testID="sliderComponent4"
+            trackClickable={true}
+            trackMarks={[]}
+            value="-10"
+          >
+            <View
+              onLayout={[Function]}
+              renderToHardwareTextureAndroid={true}
+              style={
+                [
+                  {
+                    "borderRadius": 2,
+                    "height": 4,
+                  },
+                  {
+                    "backgroundColor": "#b3b3b3",
+                  },
+                  {
+                    "borderRadius": 15,
+                    "height": 12,
+                  },
+                ]
+              }
+            />
+            <View
+              collapsable={false}
+              renderToHardwareTextureAndroid={true}
+              style={
+                {
+                  "backgroundColor": "#808284",
+                  "borderRadius": 15,
+                  "height": 12,
+                  "left": 0,
+                  "opacity": 0,
+                  "position": "absolute",
+                  "width": 0,
+                }
+              }
+            />
+            <View
+              collapsable={false}
+              onLayout={[Function]}
+              style={
+                {
+                  "opacity": 0,
+                  "position": "absolute",
+                  "transform": [
+                    {
+                      "translateX": 0,
+                    },
+                    {
+                      "translateY": 0,
+                    },
+                  ],
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "backgroundColor": "#808284",
+                    "borderRadius": 4,
+                    "height": 36,
+                    "width": 36,
+                  }
+                }
+              />
+            </View>
+            <View
+              onMoveShouldSetResponder={[Function]}
+              onMoveShouldSetResponderCapture={[Function]}
+              onResponderEnd={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderReject={[Function]}
+              onResponderRelease={[Function]}
+              onResponderStart={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              onStartShouldSetResponderCapture={[Function]}
+              style={
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  {
+                    "marginBottom": -20,
+                    "marginLeft": -20,
+                    "marginRight": -20,
+                    "marginTop": -20,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

@@ -20,10 +20,26 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
     }
   >
     <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
-      nativeID="animatedComponent"
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -36,7 +52,6 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
           "opacity": 1,
         }
       }
-      testID="header-back-button"
     >
       <
         height={48}
@@ -49,12 +64,13 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
       />
     </View>
     <Text
+      numberOfLines={1}
       style={
         {
           "color": "#FB8C00",
           "flex": 1,
           "fontFamily": "CenturyGothic",
-          "fontSize": 36,
+          "fontSize": 34,
           "fontWeight": "700",
         }
       }
@@ -62,10 +78,26 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
       [missing "en.settings" translation]
     </Text>
     <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
-      nativeID="animatedComponent"
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -84,176 +116,6 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
         width={48}
       />
     </View>
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      onRequestClose={[Function]}
-      transparent={true}
-      visible={true}
-    >
-      <View
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        nativeID="animatedComponent"
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          {
-            "flex": 1,
-            "opacity": 1,
-          }
-        }
-      >
-        <View
-          style={
-            {
-              "alignSelf": "flex-end",
-              "backgroundColor": "white",
-              "borderRadius": 16,
-              "elevation": 4,
-              "justifyContent": "flex-start",
-              "marginHorizontal": 60,
-              "marginTop": 150,
-              "padding": 24,
-              "shadowColor": "#000",
-              "shadowOffset": {
-                "height": 2,
-                "width": 0,
-              },
-              "shadowOpacity": 0.25,
-              "shadowRadius": 4,
-              "width": 340,
-            }
-          }
-        >
-          <View
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            nativeID="animatedComponent"
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "marginBottom": 24,
-                "opacity": 1,
-              }
-            }
-          >
-            <
-              height={40}
-              width={40}
-            />
-            <Text
-              style={
-                {
-                  "color": undefined,
-                  "fontFamily": "CenturyGothic-Bold",
-                  "fontSize": 28,
-                  "marginBottom": 4,
-                  "marginLeft": 32,
-                  "marginTop": 2,
-                }
-              }
-            >
-              [missing "en.identify" translation]
-            </Text>
-          </View>
-          <View
-            accessible={true}
-            collapsable={false}
-            focusable={false}
-            nativeID="animatedComponent"
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "marginBottom": 24,
-                "opacity": 1,
-              }
-            }
-          >
-            <
-              height={40}
-              width={40}
-            />
-            <Text
-              style={
-                {
-                  "color": undefined,
-                  "fontFamily": "CenturyGothic-Bold",
-                  "fontSize": 28,
-                  "marginBottom": 4,
-                  "marginLeft": 32,
-                  "marginTop": 2,
-                }
-              }
-            >
-              [missing "en.resetPasscode" translation]
-            </Text>
-          </View>
-          <View
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            nativeID="animatedComponent"
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "opacity": 1,
-              }
-            }
-          >
-            <
-              height={40}
-              width={40}
-            />
-            <Text
-              style={
-                {
-                  "color": undefined,
-                  "fontFamily": "CenturyGothic-Bold",
-                  "fontSize": 28,
-                  "marginBottom": 4,
-                  "marginLeft": 32,
-                  "marginTop": 2,
-                }
-              }
-            >
-              [missing "en.enablePOEOverride" translation]
-            </Text>
-          </View>
-        </View>
-      </View>
-    </Modal>
   </View>
   <View
     style={
@@ -277,10 +139,26 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
       }
     >
       <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
-        nativeID="animatedComponent"
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -315,7 +193,7 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                 "color": "#808284",
                 "flex": 1,
                 "fontFamily": "CenturyGothic",
-                "fontSize": undefined,
+                "fontSize": 30,
                 "paddingBottom": 0,
                 "paddingLeft": 0,
               }
@@ -345,10 +223,26 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
       }
     >
       <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
-        nativeID="animatedComponent"
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -383,7 +277,7 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                 "color": "#B0B99990",
                 "flex": 1,
                 "fontFamily": "CenturyGothic",
-                "fontSize": undefined,
+                "fontSize": 30,
                 "paddingBottom": 0,
                 "paddingLeft": 0,
               }
@@ -413,10 +307,26 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
       }
     >
       <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
-        nativeID="animatedComponent"
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -451,13 +361,13 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                 "color": "#808284",
                 "flex": 1,
                 "fontFamily": "CenturyGothic",
-                "fontSize": undefined,
+                "fontSize": 30,
                 "paddingBottom": 0,
                 "paddingLeft": 0,
               }
             }
           >
-            Select Device Type
+            MockDeviceType
           </Text>
         </View>
         <View>
@@ -479,10 +389,26 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
       }
     >
       <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={false}
-        nativeID="animatedComponent"
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -505,7 +431,7 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
         <View
           style={
             {
-              "height": 114,
+              "height": 112,
               "width": "100%",
             }
           }
@@ -548,6 +474,7 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                     "backgroundColor": "transparent",
                   }
                 }
+                maxLength={45}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -557,9 +484,9 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                       "color": "#1A1C1C",
                       "flex": 1,
                       "fontFamily": "CenturyGothic",
-                      "fontSize": 24,
+                      "fontSize": 30,
                       "fontWeight": "400",
-                      "marginTop": 20,
+                      "marginTop": 30,
                       "padding": 0,
                       "paddingStart": 1,
                       "textDecorationLine": "none",
@@ -567,27 +494,43 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                     undefined,
                   ]
                 }
-                value="Brx-emulator"
+                value="MockDevice"
               />
             </View>
             <View
               collapsable={false}
-              nativeID="animatedComponent"
               style={
                 {
                   "alignItems": "center",
                   "backgroundColor": "transparent",
                   "justifyContent": "center",
                   "position": "absolute",
-                  "top": -0.10000000000000142,
+                  "top": -12,
+                  "zIndex": -1,
                 }
               }
             >
               <View
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
@@ -604,13 +547,12 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                 <Text
                   adjustsFontSizeToFit={true}
                   collapsable={false}
-                  nativeID="animatedComponent"
                   numberOfLines={1}
                   style={
                     {
                       "color": "#808284",
                       "fontFamily": "CenturyGothic",
-                      "fontSize": 20,
+                      "fontSize": 24,
                       "textAlign": "left",
                     }
                   }
@@ -625,8 +567,8 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                   {
                     "color": "#FF0000",
                     "fontFamily": "CenturyGothic-Bold",
-                    "fontSize": 16,
-                    "marginTop": 10,
+                    "fontSize": 22,
+                    "marginTop": 16,
                     "textAlign": "right",
                   },
                   undefined,
@@ -651,10 +593,26 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
       }
     >
       <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={false}
-        nativeID="animatedComponent"
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -677,138 +635,40 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
         <View
           style={
             {
-              "height": 114,
-              "width": "100%",
+              "borderBottomColor": "#808284",
+              "borderBottomWidth": 1,
+              "flex": 1,
             }
           }
         >
-          <View
+          <Text
             style={
               {
-                "marginTop": 10,
+                "color": "#808284",
+                "flex": 1,
+                "fontFamily": "CenturyGothic",
+                "fontSize": 22,
+                "paddingLeft": 0,
+                "paddingTop": 22,
               }
             }
           >
-            <View
-              style={
-                [
-                  {
-                    "alignItems": "flex-end",
-                    "borderBottomWidth": 1,
-                    "borderColor": "#808284",
-                    "borderRadius": 6,
-                    "borderStyle": "solid",
-                    "flexDirection": "row",
-                    "height": 80,
-                    "justifyContent": "space-between",
-                    "paddingBottom": 12,
-                    "width": 680,
-                  },
-                  undefined,
-                ]
+            Mac Address
+          </Text>
+          <Text
+            style={
+              {
+                "color": "#1A1C1C",
+                "flex": 1,
+                "fontFamily": "CenturyGothic",
+                "fontSize": 30,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
               }
-            >
-              <TextInput
-                autoFocus={false}
-                enablesReturnKeyAutomatically={true}
-                fieldName="Mac Address"
-                keyboardType="default"
-                label="Mac Address"
-                labelStyle={
-                  {
-                    "backgroundColor": "transparent",
-                  }
-                }
-                maxLength={17}
-                onBlur={[Function]}
-                onChangeText={[Function]}
-                onFocus={[Function]}
-                style={
-                  [
-                    {
-                      "color": "#808284",
-                      "flex": 1,
-                      "fontFamily": "CenturyGothic",
-                      "fontSize": 24,
-                      "fontWeight": "400",
-                      "marginTop": 20,
-                      "padding": 0,
-                      "paddingStart": 1,
-                      "textDecorationLine": "none",
-                    },
-                    undefined,
-                  ]
-                }
-                value=""
-              />
-            </View>
-            <View
-              collapsable={false}
-              nativeID="animatedComponent"
-              style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "transparent",
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "top": 38,
-                }
-              }
-            >
-              <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                nativeID="animatedComponent"
-                onClick={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                style={
-                  {
-                    "opacity": 1,
-                  }
-                }
-              >
-                <Text
-                  adjustsFontSizeToFit={true}
-                  collapsable={false}
-                  nativeID="animatedComponent"
-                  numberOfLines={1}
-                  style={
-                    {
-                      "color": "#808284",
-                      "fontFamily": "CenturyGothic",
-                      "fontSize": 25,
-                      "textAlign": "left",
-                    }
-                  }
-                >
-                  Mac Address
-                </Text>
-              </View>
-            </View>
-            <Text
-              style={
-                [
-                  {
-                    "color": "#FF0000",
-                    "fontFamily": "CenturyGothic-Bold",
-                    "fontSize": 16,
-                    "marginTop": 10,
-                    "textAlign": "right",
-                  },
-                  undefined,
-                  {
-                    "textAlign": "right",
-                  },
-                ]
-              }
-            />
-          </View>
+            }
+          >
+            00:11:22:33:44:55
+          </Text>
         </View>
       </View>
     </View>
@@ -823,10 +683,26 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
       }
     >
       <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={false}
-        nativeID="animatedComponent"
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -849,7 +725,7 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
         <View
           style={
             {
-              "height": 114,
+              "height": 112,
               "width": "100%",
             }
           }
@@ -901,9 +777,9 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                       "color": "#1A1C1C",
                       "flex": 1,
                       "fontFamily": "CenturyGothic",
-                      "fontSize": 24,
+                      "fontSize": 30,
                       "fontWeight": "400",
-                      "marginTop": 20,
+                      "marginTop": 30,
                       "padding": 0,
                       "paddingStart": 1,
                       "textDecorationLine": "none",
@@ -916,22 +792,38 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
             </View>
             <View
               collapsable={false}
-              nativeID="animatedComponent"
               style={
                 {
                   "alignItems": "center",
                   "backgroundColor": "transparent",
                   "justifyContent": "center",
                   "position": "absolute",
-                  "top": 38,
+                  "top": 28,
+                  "zIndex": -1,
                 }
               }
             >
               <View
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
@@ -948,13 +840,12 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                 <Text
                   adjustsFontSizeToFit={true}
                   collapsable={false}
-                  nativeID="animatedComponent"
                   numberOfLines={1}
                   style={
                     {
                       "color": "#808284",
                       "fontFamily": "CenturyGothic",
-                      "fontSize": 25,
+                      "fontSize": 30,
                       "textAlign": "left",
                     }
                   }
@@ -969,8 +860,8 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                   {
                     "color": "#FF0000",
                     "fontFamily": "CenturyGothic-Bold",
-                    "fontSize": 16,
-                    "marginTop": 10,
+                    "fontSize": 22,
+                    "marginTop": 16,
                     "textAlign": "right",
                   },
                   undefined,
@@ -997,13 +888,24 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
       <View
         accessibilityState={
           {
+            "busy": undefined,
+            "checked": undefined,
             "disabled": true,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
           }
         }
         accessible={true}
         collapsable={false}
-        focusable={true}
-        nativeID="animatedComponent"
+        focusable={false}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -1014,7 +916,7 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
         style={
           {
             "alignItems": "center",
-            "backgroundColor": "#B0B6BB",
+            "backgroundColor": "#B0B6BB33",
             "height": 100,
             "justifyContent": "center",
             "opacity": 1,
@@ -1027,7 +929,7 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
             {
               "color": "#FFFFFF",
               "fontFamily": "CenturyGothic",
-              "fontSize": 32,
+              "fontSize": 30,
               "fontWeight": "700",
             }
           }
@@ -1039,7 +941,6 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
   </View>
   <Modal
     backdrop={true}
-    hardwareAccelerated={false}
     hideModal={[Function]}
     transparent={true}
     visible={true}
@@ -1047,13 +948,24 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
     <View
       accessibilityState={
         {
+          "busy": undefined,
+          "checked": undefined,
           "disabled": true,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
         }
       }
       accessible={true}
       collapsable={false}
       focusable={false}
-      nativeID="animatedComponent"
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -1072,10 +984,26 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
       }
     >
       <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
-        nativeID="animatedComponent"
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -1122,9 +1050,9 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                 "alignSelf": "center",
                 "color": "#000",
                 "fontFamily": "CenturyGothic",
-                "fontSize": 32,
+                "fontSize": 30,
                 "fontWeight": "700",
-                "lineHeight": 40,
+                "lineHeight": 38,
                 "marginBottom": 32,
               }
             }
@@ -1137,9 +1065,9 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                 {
                   "color": "#484949",
                   "fontFamily": "CenturyGothic",
-                  "fontSize": 28,
+                  "fontSize": 26,
                   "fontWeight": "400",
-                  "lineHeight": 32,
+                  "lineHeight": 30,
                   "textAlign": "center",
                 },
                 {
@@ -1151,10 +1079,26 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
             [missing "en.turnOnYourBluetooth" translation]
           </Text>
           <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
-            nativeID="animatedComponent"
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -1182,7 +1126,7 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                     "alignItems": "center",
                     "color": "#FFFFFF",
                     "fontFamily": "CenturyGothic-Bold",
-                    "fontSize": 36,
+                    "fontSize": 34,
                     "fontWeight": "700",
                     "textAlign": "center",
                   },
@@ -1194,10 +1138,26 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
             </Text>
           </View>
           <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
-            nativeID="animatedComponent"
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -1218,9 +1178,9 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                 {
                   "color": "#003D7D",
                   "fontFamily": "CenturyGothic",
-                  "fontSize": 28,
+                  "fontSize": 26,
                   "fontWeight": "700",
-                  "lineHeight": 32,
+                  "lineHeight": 30,
                   "textAlign": "center",
                 }
               }
@@ -1233,175 +1193,31 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
     </View>
   </Modal>
   <Modal
-    animationType="slide"
-    hardwareAccelerated={false}
-    onRequestClose={[Function]}
-    transparent={true}
-    visible={false}
-  >
-    <View
-      style={
-        {
-          "alignItems": "center",
-          "flex": 1,
-          "flexDirection": "column",
-          "height": 280,
-          "justifyContent": "flex-start",
-          "marginTop": 480,
-          "width": "100%",
-        }
-      }
-    >
-      <View
-        style={
-          {
-            "backgroundColor": "#FFFFFF",
-            "borderRadius": 24,
-            "elevation": 5,
-            "flex": 1,
-            "flexDirection": "column",
-            "shadowColor": "#00000040",
-            "shadowOpacity": 0.4,
-            "shadowRadius": 5,
-            "width": "100%",
-          }
-        }
-      >
-        <View
-          style={
-            {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "height": 100,
-              "justifyContent": "center",
-              "margin": 40,
-            }
-          }
-        >
-          <Text
-            style={
-              {
-                "color": "#000000",
-                "flex": 1,
-                "fontFamily": "CenturyGothic",
-                "fontSize": 36,
-                "fontWeight": "700",
-              }
-            }
-          >
-            [missing "en.selectSchool" translation]
-          </Text>
-          <View
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            nativeID="animatedComponent"
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "opacity": 1,
-              }
-            }
-          >
-            <
-              height={40}
-              width={40}
-            />
-          </View>
-        </View>
-        <View
-          style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "#B0B6BB",
-              "borderRadius": 24,
-              "flexDirection": "row",
-              "height": 80,
-              "justifyContent": "center",
-              "marginLeft": 30,
-              "marginRight": 30,
-              "width": 686,
-            }
-          }
-        >
-          <View
-            style={
-              {
-                "alignItems": "center",
-                "flex": 0.1,
-                "justifyContent": "center",
-              }
-            }
-          >
-            <
-              height={28}
-              width={28}
-            />
-          </View>
-          <TextInput
-            onChangeText={[Function]}
-            placeholder="[missing "en.typeToSearchOrAdd" translation]"
-            placeholderTextColor="#808284"
-            style={
-              {
-                "borderBottomRightRadius": 24,
-                "borderTopRightRadius": 24,
-                "color": "#000000",
-                "flex": 0.9,
-                "fontSize": 32,
-                "marginLeft": 0,
-              }
-            }
-            underlineColorAndroid="transparent"
-            value=""
-          />
-        </View>
-        <RCTScrollView
-          data={[]}
-          getItem={[Function]}
-          getItemCount={[Function]}
-          keyExtractor={[Function]}
-          onContentSizeChange={[Function]}
-          onLayout={[Function]}
-          onMomentumScrollBegin={[Function]}
-          onMomentumScrollEnd={[Function]}
-          onScroll={[Function]}
-          onScrollBeginDrag={[Function]}
-          onScrollEndDrag={[Function]}
-          removeClippedSubviews={false}
-          renderItem={[Function]}
-          scrollEventThrottle={50}
-          stickyHeaderIndices={[]}
-          viewabilityConfigCallbackPairs={[]}
-        >
-          <View />
-        </RCTScrollView>
-      </View>
-    </View>
-  </Modal>
-  <Modal
     backdrop={true}
-    hardwareAccelerated={false}
     hideModal={[Function]}
     transparent={true}
-    visible={false}
   >
     <View
       accessibilityState={
         {
+          "busy": undefined,
+          "checked": undefined,
           "disabled": true,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
         }
       }
       accessible={true}
       collapsable={false}
       focusable={false}
-      nativeID="animatedComponent"
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -1420,10 +1236,26 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
       }
     >
       <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
-        nativeID="animatedComponent"
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -1455,9 +1287,9 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                 {
                   "color": "#484949",
                   "fontFamily": "CenturyGothic",
-                  "fontSize": 28,
+                  "fontSize": 26,
                   "fontWeight": "400",
-                  "lineHeight": 32,
+                  "lineHeight": 30,
                   "textAlign": "center",
                 },
                 {
@@ -1466,13 +1298,29 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
               ]
             }
           >
-            [missing "en.doYouWantToSaveThemBeforeMovingToOtherScreen" translation]
+            [missing "en.thisWillReboot" translation]
           </Text>
           <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
-            nativeID="animatedComponent"
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -1500,7 +1348,7 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                     "alignItems": "center",
                     "color": "#FFFFFF",
                     "fontFamily": "CenturyGothic-Bold",
-                    "fontSize": 36,
+                    "fontSize": 34,
                     "fontWeight": "700",
                     "textAlign": "center",
                   },
@@ -1508,14 +1356,30 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                 ]
               }
             >
-              [missing "en.save" translation]
+              [missing "en.ok" translation]
             </Text>
           </View>
           <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
-            nativeID="animatedComponent"
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -1536,14 +1400,14 @@ exports[`on Settings screen mount should match snapshot of settings screen 1`] =
                 {
                   "color": "#003D7D",
                   "fontFamily": "CenturyGothic",
-                  "fontSize": 28,
+                  "fontSize": 26,
                   "fontWeight": "700",
-                  "lineHeight": 32,
+                  "lineHeight": 30,
                   "textAlign": "center",
                 }
               }
             >
-              [missing "en.leave" translation]
+              [missing "en.cancel" translation]
             </Text>
           </View>
         </View>

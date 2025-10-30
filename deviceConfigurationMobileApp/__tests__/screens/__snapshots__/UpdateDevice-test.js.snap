@@ -70,7 +70,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
           "color": "#FB8C00",
           "flex": 1,
           "fontFamily": "CenturyGothic",
-          "fontSize": 36,
+          "fontSize": 34,
           "fontWeight": "700",
         }
       }
@@ -126,8 +126,8 @@ exports[`on landing to Update device should render add device correctly 1`] = `
               "borderRadius": 16,
               "elevation": 4,
               "justifyContent": "flex-start",
-              "marginHorizontal": 60,
-              "marginTop": 150,
+              "marginHorizontal": 50,
+              "marginTop": 90,
               "minWidth": 340,
               "paddingEnd": 32,
               "paddingStart": 24,
@@ -188,7 +188,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
                 {
                   "color": "#1A1C1C",
                   "fontFamily": "CenturyGothic-Bold",
-                  "fontSize": 28,
+                  "fontSize": 26,
                   "marginBottom": 4,
                   "marginLeft": 32,
                   "marginTop": 2,
@@ -244,7 +244,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
                 {
                   "color": "#1A1C1C",
                   "fontFamily": "CenturyGothic-Bold",
-                  "fontSize": 28,
+                  "fontSize": 26,
                   "marginBottom": 4,
                   "marginLeft": 32,
                   "marginTop": 2,
@@ -285,7 +285,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
             "color": "#808284",
             "flex": 1,
             "fontFamily": "CenturyGothic",
-            "fontSize": 20,
+            "fontSize": 22,
             "paddingLeft": 0,
             "paddingTop": 12,
           }
@@ -346,7 +346,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
                 "color": "#1A1C1C",
                 "flex": 1,
                 "fontFamily": "CenturyGothic",
-                "fontSize": 24,
+                "fontSize": 30,
                 "paddingBottom": 0,
                 "paddingLeft": 0,
               }
@@ -390,7 +390,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
             "color": "#808284",
             "flex": 1,
             "fontFamily": "CenturyGothic",
-            "fontSize": 20,
+            "fontSize": 22,
             "paddingLeft": 0,
             "paddingTop": 12,
           }
@@ -451,7 +451,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
                 "color": "#1A1C1C",
                 "flex": 1,
                 "fontFamily": "CenturyGothic",
-                "fontSize": 24,
+                "fontSize": 30,
                 "paddingBottom": 0,
                 "paddingLeft": 0,
               }
@@ -495,7 +495,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
             "color": "#808284",
             "flex": 1,
             "fontFamily": "CenturyGothic",
-            "fontSize": 20,
+            "fontSize": 22,
             "paddingLeft": 0,
             "paddingTop": 12,
           }
@@ -556,7 +556,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
                 "color": "#1A1C1C",
                 "flex": 1,
                 "fontFamily": "CenturyGothic",
-                "fontSize": 24,
+                "fontSize": 30,
                 "paddingBottom": 0,
                 "paddingLeft": 0,
               }
@@ -598,7 +598,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
             "color": "#808284",
             "flex": 1,
             "fontFamily": "CenturyGothic",
-            "fontSize": 20,
+            "fontSize": 22,
             "paddingLeft": 0,
             "paddingTop": 12,
           }
@@ -661,7 +661,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
                 "color": "#1A1C1C",
                 "flex": 1,
                 "fontFamily": "CenturyGothic",
-                "fontSize": 24,
+                "fontSize": 30,
                 "paddingBottom": 0,
                 "paddingLeft": 0,
               }
@@ -689,7 +689,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
             "color": "#808284",
             "flex": 1,
             "fontFamily": "CenturyGothic",
-            "fontSize": 20,
+            "fontSize": 22,
             "paddingLeft": 0,
             "paddingTop": 12,
           }
@@ -752,7 +752,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
                 "color": "#1A1C1C",
                 "flex": 1,
                 "fontFamily": "CenturyGothic",
-                "fontSize": 24,
+                "fontSize": 30,
                 "paddingBottom": 0,
                 "paddingLeft": 0,
               }
@@ -780,7 +780,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
             "color": "#808284",
             "flex": 1,
             "fontFamily": "CenturyGothic",
-            "fontSize": 20,
+            "fontSize": 22,
             "paddingLeft": 0,
             "paddingTop": 12,
           }
@@ -842,7 +842,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
                 "color": "#1A1C1C",
                 "flex": 1,
                 "fontFamily": "CenturyGothic",
-                "fontSize": 24,
+                "fontSize": 30,
                 "paddingBottom": 0,
                 "paddingLeft": 0,
               }
@@ -857,7 +857,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
         {
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "marginBottom": 20,
+          "marginBottom": "",
           "marginTop": 100,
         }
       }
@@ -906,7 +906,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
             {
               "color": "#FFFFFF",
               "fontFamily": "CenturyGothic",
-              "fontSize": 32,
+              "fontSize": 30,
               "fontWeight": "700",
             }
           }
@@ -959,7 +959,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
             {
               "color": "#FFFFFF",
               "fontFamily": "CenturyGothic",
-              "fontSize": 32,
+              "fontSize": 30,
               "fontWeight": "700",
             }
           }
