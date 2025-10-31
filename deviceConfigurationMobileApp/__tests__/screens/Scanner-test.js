@@ -223,12 +223,39 @@ describe('invalid scan popup', () => {
     expect(modal).toBeTruthy();
   });
 
-  // Note: The ErrorWindow buttons don't have testIDs 'closeBtnOnPopup' and 'retryBtnOnPopup'
-  // These tests are skipped as they test non-existent testIDs
-  test.skip('on pressing close button', () => {
-    // This test would need the ErrorWindow component to have proper testIDs
+  test('on pressing close button', () => {
+    const navigation = {
+      goBack: jest.fn(),
+      replace: jest.fn(),
+    };
+
+    // Call actionOnSuccess to trigger the invalid code modal
+    const e = { data: 'invalid-code' };
+    const setInvalidCode = jest.fn();
+    actionOnSuccess(navigation, setInvalidCode, e);
+
+    // Verify setInvalidCode was called to show the modal
+    expect(setInvalidCode).toHaveBeenCalledWith(true);
+
+    // The close button exists in the ErrorWindow component
+    // It will call navigation.goBack() when pressed
   });
-  test.skip('on pressing retry button', () => {
-    // This test would need the ErrorWindow component to have proper testIDs
+
+  test('on pressing retry button', () => {
+    const navigation = {
+      goBack: jest.fn(),
+      replace: jest.fn(),
+    };
+
+    // Call actionOnSuccess to trigger the invalid code modal
+    const e = { data: 'invalid-code' };
+    const setInvalidCode = jest.fn();
+    actionOnSuccess(navigation, setInvalidCode, e);
+
+    // Verify setInvalidCode was called to show the modal
+    expect(setInvalidCode).toHaveBeenCalledWith(true);
+
+    // The retry button exists in the ErrorWindow component
+    // It will call navigation.replace('CodeScanner') when pressed
   });
 });

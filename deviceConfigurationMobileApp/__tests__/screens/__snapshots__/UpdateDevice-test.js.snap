@@ -52,6 +52,7 @@ exports[`on landing to Update device should render add device correctly 1`] = `
           "opacity": 1,
         }
       }
+      testID="header-back-button"
     >
       <
         height={48}

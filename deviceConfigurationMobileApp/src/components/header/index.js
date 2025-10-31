@@ -73,6 +73,7 @@ const Header = props => {
     <View style={styles.containerStyle}>
       {showBackButton && (
         <TouchableOpacity
+          testID="header-back-button"
           onPress={overrideBackPress ? overrideBackPress : handleBackPress}>
           <LeftIcon
             width={Mixins.scaleSize(24)}

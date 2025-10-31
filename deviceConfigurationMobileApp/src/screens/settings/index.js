@@ -452,7 +452,7 @@ export default function Settings({ route, navigation }) {
   };
 
   return (
-    <View style={styles.containerStyle}>
+    <View testID="settings" style={styles.containerStyle}>
       <Header
         showBackButton={true}
         navigation={navigation}
@@ -467,6 +467,7 @@ export default function Settings({ route, navigation }) {
         bounces={false}>
         <View style={styles.dropDownContainerStyle}>
           <DropDownForSettings
+            testID="schoolDropDownTouchable"
             identity={'selectSchool'}
             isBorderRequired={true}
             isFieldSelected={schoolSelectedFlag}
@@ -566,6 +567,7 @@ export default function Settings({ route, navigation }) {
       />
       <POEModal navigation={navigation} />
       <Modal
+        testID="listModel"
         animationType="slide"
         transparent={true}
         visible={modalVisible}
@@ -599,6 +601,7 @@ export default function Settings({ route, navigation }) {
                   />
                 </View>
                 <TextInput
+                  testID="searchBar"
                   onChangeText={text => searchFilterFunction(text)}
                   value={search}
                   underlineColorAndroid="transparent"

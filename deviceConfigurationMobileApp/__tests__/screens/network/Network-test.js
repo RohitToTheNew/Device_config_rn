@@ -20,20 +20,32 @@ import * as NetworkSettingsFunctions from '../../../src/services/network/action'
 import { store } from '../../../src/store/configureStore';
 import Toast from 'react-native-toast-message';
 
+// Setup fake timers to control animations
+jest.useFakeTimers();
+
 // Clear all timers after each test to prevent animation warnings
 afterEach(() => {
   jest.clearAllTimers();
 });
 
 describe('on homescreen bottom tab mount', () => {
-  let tree;
+  let tree, component;
 
   beforeEach(() => {
-    let component;
     rendererAct(() => {
       component = renderer.create(<Network />);
+      tree = component.toJSON();
     });
-    tree = component.toJSON();
+  });
+
+  afterEach(() => {
+    if (component) {
+      rendererAct(() => {
+        component.unmount();
+      });
+      component = null;
+    }
+    tree = null;
   });
 
   it('renders network correctly', () => {

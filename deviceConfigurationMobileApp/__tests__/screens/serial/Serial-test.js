@@ -60,6 +60,9 @@ jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
 }));
 
+// Setup fake timers to control animations
+jest.useFakeTimers();
+
 // Clear all timers after each test to prevent animation warnings
 afterEach(() => {
   jest.clearAllTimers();
@@ -189,9 +192,13 @@ describe('on homescreen bottom tab mount', () => {
           <Serial />
         </NavigationContainer>,
       );
+      tree = component.toJSON();
     });
-    tree = component.toJSON();
     expect(tree).toMatchSnapshot();
+    // Clean up
+    rendererAct(() => {
+      component.unmount();
+    });
   });
 
   it('should render the component correctly', () => {

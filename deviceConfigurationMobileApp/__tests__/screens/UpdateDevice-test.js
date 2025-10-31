@@ -42,9 +42,7 @@ import {
   searchFilter,
   deviceTypeDropDown,
   getRoom,
-  updateDevice as updateDeviceAction,
   onBackPressSaveDevice,
-  navigateToDeviceListing as navigateToDeviceListingAction,
   updateDeviceType,
 } from '../../src/screens/updateDevice/action';
 
@@ -52,6 +50,9 @@ import Toast from 'react-native-toast-message';
 import { NavigationContainer } from '@react-navigation/native';
 import RNFS from 'react-native-fs';
 import Utils from '../../src/utils';
+
+// Setup fake timers to control animations
+jest.useFakeTimers();
 
 // Clear all timers after each test to prevent animation warnings
 afterEach(() => {
@@ -354,35 +355,63 @@ describe('Create new School', () => {
   )('new School');
 });
 
-describe('updateDevice', () => {
-  let navigationSpy = '';
-  let updatedDevice = {
-    deviceID: '1',
-    deviceName: 'dummy Device',
-    deviceType: 'MS700',
-    macAddress: 'MacAddressssss',
-    serialNumber: 'Serial number 1',
-  };
+describe('updateDevice functionality', () => {
+  test('it should navigate to manageSchool after saving device with valid data', async () => {
+    const mockNavigation = {
+      replace: jest.fn(),
+      goBack: jest.fn(),
+    };
 
-  beforeEach(() => {
-    navigationSpy = jest.spyOn(props.navigation, 'goBack');
-    let component;
-    rendererAct(() => {
-      component = renderer.create(
-        <NavigationContainer>
-          <UpdateDevice {...props} />
-        </NavigationContainer>,
-      );
-    });
-    tree = component.toJSON();
-  });
+    const routeSchoolId = 1;
+    const routeRoomId = 1;
+    const macAddress = 'AB:BC:SD:EE:FF:GG';
+    const serialNumber = 'Serial number 1';
+    const deviceName = 'dummy Device';
+    const deviceType = 'MS700';
+    const deviceID = 1;
+    const schoolId = 1;
+    const roomId = 1;
+    const routeMacAddress = 'AB:BC:SD:EE:FF:GG';
 
-  // SKIPPED: updateDevice function is not exported from action file
-  test.skip('it should navigate back after saving device', () => {
-    updateDeviceAction(updatedDevice);
-    setTimeout(() => {
-      expect(navigationSpy).toBeCalled();
-    }, 100);
+    // Mock RNFS to return valid data
+    jest.spyOn(RNFS, 'readFile').mockResolvedValue(JSON.stringify([
+      {
+        id: 1,
+        title: 'School 1',
+        rooms: [
+          {
+            id: 1,
+            title: 'Room 1',
+            devices: [
+              {
+                macAddress: 'AB:BC:SD:EE:FF:GG',
+                serialNumber: 'Serial',
+                deviceName: 'Device',
+                deviceType: 'MS-700',
+                deviceID: 1,
+              },
+            ],
+          },
+        ],
+      },
+    ]));
+
+    await onBackPressSaveDevice(
+      routeSchoolId,
+      routeRoomId,
+      macAddress,
+      serialNumber,
+      deviceName,
+      deviceType,
+      deviceID,
+      schoolId,
+      roomId,
+      mockNavigation,
+      routeMacAddress,
+    );
+
+    // Verify navigation was called after updating device
+    expect(mockNavigation.replace).toHaveBeenCalledWith('manageSchool');
   });
 });
 
@@ -447,32 +476,66 @@ describe('onBackPressSaveDevice', () => {
   });
 });
 
-describe('navigateToDeviceListing', () => {
-  let navigationSpy = '';
-  const macAddress = 'AB:BC:SD:FR:FR:QW';
-  const serialNumber = 'Serial number';
-  const schoolId = 1;
-  const roomId = 1;
+describe('navigate to device listing after update', () => {
+  test('it should navigate to manageSchool screen when device is successfully updated', async () => {
+    const mockNavigation = {
+      replace: jest.fn(),
+      goBack: jest.fn(),
+    };
 
-  beforeEach(() => {
-    navigationSpy = jest.spyOn(props.navigation, 'push');
-    let component;
-    rendererAct(() => {
-      component = renderer.create(
-        <NavigationContainer>
-          <UpdateDevice {...props} />
-        </NavigationContainer>,
-      );
-    });
-    tree = component.toJSON();
-  });
+    const routeSchoolId = 1;
+    const routeRoomId = 1;
+    const macAddress = 'AA:BB:CC:DD:EE:FF';
+    const serialNumber = 'Serial number 2';
+    const deviceName = 'Updated Device';
+    const deviceType = 'CZA1300';
+    const deviceID = 1;
+    const schoolId = 1;
+    const roomId = 1;
+    const routeMacAddress = 'AA:BB:CC:DD:EE:FF';
 
-  // SKIPPED: navigateToDeviceListing function is not exported from action file
-  test.skip('it should navigate to manageSchool screen', () => {
-    navigateToDeviceListingAction(macAddress, serialNumber, schoolId, roomId);
-    setTimeout(() => {
-      expect(navigationSpy).toBeCalled();
-    }, 100);
+    // Mock RNFS to return valid data
+    const readFileSpy = jest.spyOn(RNFS, 'readFile').mockResolvedValue(JSON.stringify([
+      {
+        id: 1,
+        title: 'School 1',
+        rooms: [
+          {
+            id: 1,
+            title: 'Room 1',
+            devices: [
+              {
+                macAddress: 'AA:BB:CC:DD:EE:FF',
+                serialNumber: 'Serial',
+                deviceName: 'Device',
+                deviceType: 'MS-700',
+                deviceID: 1,
+              },
+            ],
+          },
+        ],
+      },
+    ]));
+
+    await onBackPressSaveDevice(
+      routeSchoolId,
+      routeRoomId,
+      macAddress,
+      serialNumber,
+      deviceName,
+      deviceType,
+      deviceID,
+      schoolId,
+      roomId,
+      mockNavigation,
+      routeMacAddress,
+    );
+
+    // Verify navigation.replace was called to navigate to manageSchool
+    expect(mockNavigation.replace).toHaveBeenCalledWith('manageSchool');
+    
+    // Clean up
+    readFileSpy.mockRestore();
   });
 });
 

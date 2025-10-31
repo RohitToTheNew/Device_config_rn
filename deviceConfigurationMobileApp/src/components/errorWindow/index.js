@@ -43,7 +43,7 @@ export default function ErrorWindow({
             {errorTitle || translate('somethingWentWrong')}
           </Text>
           <CustomButton
-            testID={testId}
+            testID={testId || 'retryBtnOnPopup'}
             buttonText={button1Title || translate('tryAgain')}
             containerStyle={button1Style ? button1Style : styles.button1Style}
             onPress={button1Action}
@@ -52,6 +52,7 @@ export default function ErrorWindow({
           />
           {!hideButton2 && (
             <TouchableOpacity
+              testID="closeBtnOnPopup"
               onPress={button2Action}
               style={styles.button2Container}>
               <Text style={styles.button2Title}>
