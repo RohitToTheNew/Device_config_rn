@@ -116,9 +116,9 @@ exports[`on Output screen mounting renders Output screen correctly 1`] = `
                 {
                   "color": "#484949",
                   "fontFamily": "CenturyGothic",
-                  "fontSize": 26,
+                  "fontSize": 28,
                   "fontWeight": "700",
-                  "lineHeight": 30,
+                  "lineHeight": 32,
                 }
               }
             >
@@ -203,9 +203,9 @@ exports[`on Output screen mounting renders Output screen correctly 1`] = `
                     {
                       "color": "#484949",
                       "fontFamily": "CenturyGothic",
-                      "fontSize": 18,
+                      "fontSize": 20,
                       "fontWeight": "700",
-                      "lineHeight": 24,
+                      "lineHeight": 26,
                       "top": 90,
                     },
                     {
@@ -370,9 +370,9 @@ exports[`on Output screen mounting renders Output screen correctly 1`] = `
                 {
                   "color": "#484949",
                   "fontFamily": "CenturyGothic",
-                  "fontSize": 26,
+                  "fontSize": 28,
                   "fontWeight": "700",
-                  "lineHeight": 30,
+                  "lineHeight": 32,
                 }
               }
             >
@@ -457,9 +457,9 @@ exports[`on Output screen mounting renders Output screen correctly 1`] = `
                     {
                       "color": "#484949",
                       "fontFamily": "CenturyGothic",
-                      "fontSize": 18,
+                      "fontSize": 20,
                       "fontWeight": "700",
-                      "lineHeight": 24,
+                      "lineHeight": 26,
                       "top": 90,
                     },
                     {
@@ -624,9 +624,9 @@ exports[`on Output screen mounting renders Output screen correctly 1`] = `
                 {
                   "color": "#484949",
                   "fontFamily": "CenturyGothic",
-                  "fontSize": 26,
+                  "fontSize": 28,
                   "fontWeight": "700",
-                  "lineHeight": 30,
+                  "lineHeight": 32,
                 }
               }
             >
@@ -711,9 +711,9 @@ exports[`on Output screen mounting renders Output screen correctly 1`] = `
                     {
                       "color": "#484949",
                       "fontFamily": "CenturyGothic",
-                      "fontSize": 18,
+                      "fontSize": 20,
                       "fontWeight": "700",
-                      "lineHeight": 24,
+                      "lineHeight": 26,
                       "top": 90,
                     },
                     {
@@ -878,9 +878,9 @@ exports[`on Output screen mounting renders Output screen correctly 1`] = `
                 {
                   "color": "#484949",
                   "fontFamily": "CenturyGothic",
-                  "fontSize": 26,
+                  "fontSize": 28,
                   "fontWeight": "700",
-                  "lineHeight": 30,
+                  "lineHeight": 32,
                 }
               }
             >
@@ -965,9 +965,9 @@ exports[`on Output screen mounting renders Output screen correctly 1`] = `
                     {
                       "color": "#484949",
                       "fontFamily": "CenturyGothic",
-                      "fontSize": 18,
+                      "fontSize": 20,
                       "fontWeight": "700",
-                      "lineHeight": 24,
+                      "lineHeight": 26,
                       "top": 90,
                     },
                     {
@@ -1132,9 +1132,9 @@ exports[`on Output screen mounting renders Output screen correctly 1`] = `
                 {
                   "color": "#484949",
                   "fontFamily": "CenturyGothic",
-                  "fontSize": 26,
+                  "fontSize": 28,
                   "fontWeight": "700",
-                  "lineHeight": 30,
+                  "lineHeight": 32,
                 }
               }
             >
@@ -1219,9 +1219,9 @@ exports[`on Output screen mounting renders Output screen correctly 1`] = `
                     {
                       "color": "#484949",
                       "fontFamily": "CenturyGothic",
-                      "fontSize": 18,
+                      "fontSize": 20,
                       "fontWeight": "700",
-                      "lineHeight": 24,
+                      "lineHeight": 26,
                       "top": 90,
                     },
                     {

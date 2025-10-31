@@ -9,6 +9,19 @@ jest.mock('react-native/Libraries/Utilities/BackHandler', () => {
   };
 });
 
+// Mock Utils to spy on showToast
+jest.mock('../../../src/utils', () => {
+  const actualUtils = jest.requireActual('../../../src/utils');
+  return {
+    __esModule: true,
+    default: {
+      ...actualUtils.default,
+      showToast: jest.fn(),
+      Log: jest.fn(),
+    },
+  };
+});
+
 import React from 'react';
 import { Provider } from 'react-redux';
 import renderer, { act as rendererAct } from 'react-test-renderer';
@@ -28,6 +41,10 @@ import { createTestStore } from '../../utilityFunction';
 import { UUIDMappingMS700 } from '../../../src/constants';
 import Toast from 'react-native-toast-message';
 import base64 from 'react-native-base64';
+import Utils from '../../../src/utils';
+
+// Setup fake timers to control animations
+jest.useFakeTimers();
 
 // Clear all mocks before each test
 beforeEach(() => {
@@ -73,10 +90,35 @@ describe('Output volumes settings ', () => {
   });
 });
 
-// Skip: readSpy not being called - needs more complex test setup
-describe.skip('getOutputSettingsValues function', () => {
+describe('getOutputSettingsValues function', () => {
   let component, readSpy;
-  beforeEach(() => {
+  
+  beforeEach(async () => {
+    // Setup connected device first
+    await rendererAct(async () => {
+      await store.dispatch(
+        updateAuthDevices('connectedDevice', { id: 1, localName: 'Brx-emulator' }),
+      );
+      
+      // Initialize outputVolumeSettings in store
+      await store.dispatch(
+        updateVolumeSettingsFields('outputVolumeSettings', [
+          {
+            settingName: 'Speaker Output',
+            value: '-10',
+            charactersticId: UUIDMappingMS700.speakerOutput,
+            isMuted: false,
+            muteCharacter: UUIDMappingMS700.muteSpeakerOutput,
+          },
+        ])
+      );
+    });
+    
+    // Setup spy
+    readSpy = jest.spyOn(BleManager, 'readCharacteristicForDevice')
+      .mockResolvedValue({ value: 'LTEw' }); // base64 encoded "-10"
+    
+    // Render component
     component = (
       <Provider store={store}>
         <Output />
@@ -84,14 +126,24 @@ describe.skip('getOutputSettingsValues function', () => {
     );
     render(component);
   });
-  beforeAll(async () => {
-    store.dispatch(
-      updateAuthDevices('connectedDevice', { id: 1, localName: 'Brx-emulator' }),
-    );
-    readSpy = jest.spyOn(BleManager, 'readCharacteristicForDevice');
+  
+  afterEach(() => {
+    // Clean up spy
+    if (readSpy) {
+      readSpy.mockRestore();
+    }
+    // Clean up connected device and settings
+    rendererAct(() => {
+      store.dispatch(updateAuthDevices('connectedDevice', {}));
+      store.dispatch(updateVolumeSettingsFields('outputVolumeSettings', []));
+    });
   });
+  
   it('should fetch output settings from BLE', async () => {
-    await store.dispatch(getOutputSettingsValues());
+    await rendererAct(async () => {
+      await store.dispatch(getOutputSettingsValues());
+    });
+    
     expect(readSpy).toBeCalledWith(
       1,
       UUIDMappingMS700.rootServiceUDID,
@@ -105,10 +157,43 @@ describe.skip('getOutputSettingsValues function', () => {
   });
 });
 
-// Skip: Mock implementation throws errors that persist and affect other tests
-describe.skip('getOutputSettingsValues function with error in reading values from BLE', () => {
-  let component, toastSpy, rowData;
-  beforeEach(() => {
+describe('getOutputSettingsValues function with error in reading values from BLE', () => {
+  let component, toastSpy, rowData, readSpy;
+  
+  beforeEach(async () => {
+    // Setup connected device first
+    await rendererAct(async () => {
+      await store.dispatch(
+        updateAuthDevices('connectedDevice', { id: 1, localName: 'Brx-emulator' }),
+      );
+      
+      // Initialize outputVolumeSettings in store
+      await store.dispatch(
+        updateVolumeSettingsFields('outputVolumeSettings', [
+          {
+            settingName: 'Speaker Output',
+            value: '-10',
+            charactersticId: UUIDMappingMS700.speakerOutput,
+            isMuted: false,
+            muteCharacter: UUIDMappingMS700.muteSpeakerOutput,
+          },
+        ])
+      );
+    });
+    
+    rowData = {
+      index: 0,
+      item: { id: 1, charactersticId: UUIDMappingMS700.speakerOutput },
+    };
+    
+    // Setup spy that throws error
+    readSpy = jest
+      .spyOn(BleManager, 'readCharacteristicForDevice')
+      .mockRejectedValue(new Error('cannot read values because BLE is shutdown.'));
+    
+    toastSpy = jest.spyOn(Utils, 'showToast');
+    
+    // Render component
     component = (
       <Provider store={store}>
         <Output />
@@ -116,64 +201,112 @@ describe.skip('getOutputSettingsValues function with error in reading values fro
     );
     render(component);
   });
-  beforeAll(async () => {
-    store.dispatch(
-      updateAuthDevices('connectedDevice', { id: 1, localName: 'Brx-emulator' }),
-    );
-    rowData = {
-      index: 0,
-      item: { id: 1, charactersticId: UUIDMappingMS700.speakerOutput },
-    };
-    jest
-      .spyOn(BleManager, 'readCharacteristicForDevice')
-      .mockImplementation(() => {
-        throw new Error('cannot read values because BLE is shutdown.');
-      });
-    toastSpy = jest.spyOn(Toast, 'show');
+  
+  afterEach(() => {
+    // Clean up spies - CRITICAL for test isolation
+    if (readSpy) {
+      readSpy.mockRestore();
+    }
+    if (toastSpy) {
+      toastSpy.mockRestore();
+    }
+    // Clean up connected device and settings
+    rendererAct(() => {
+      store.dispatch(updateAuthDevices('connectedDevice', {}));
+      store.dispatch(updateVolumeSettingsFields('outputVolumeSettings', []));
+    });
   });
+  
   it('should get error from BLE when reading output settings from BLE', async () => {
-    await store.dispatch(getOutputSettingsValues(rowData, [30]));
+    await rendererAct(async () => {
+      await store.dispatch(getOutputSettingsValues(rowData, [30]));
+    });
     expect(toastSpy).toBeCalled();
   });
 });
 
-// Skip: Mock implementation throws errors that persist and affect other tests
-describe.skip('test for toggleMuteOutputSettings function with error', () => {
-  let spy, rowData, toastSpy;
-  beforeAll(() => {
-    spy = jest
+describe('test for toggleMuteOutputSettings function with error', () => {
+  let writeSpy, rowData, toastSpy;
+  
+  beforeEach(async () => {
+    // Setup connected device first
+    await rendererAct(async () => {
+      await store.dispatch(
+        updateAuthDevices('connectedDevice', { id: 1, localName: 'Brx-emulator' }),
+      );
+      
+      // Initialize outputVolumeSettings in store
+      await store.dispatch(
+        updateVolumeSettingsFields('outputVolumeSettings', [
+          {
+            settingName: 'Speaker Output',
+            value: '-10',
+            charactersticId: UUIDMappingMS700.speakerOutput,
+            isMuted: false,
+            muteCharacter: UUIDMappingMS700.muteSpeakerOutput,
+          },
+        ])
+      );
+    });
+    
+    // Setup spy that throws error
+    writeSpy = jest
       .spyOn(BleManager, 'writeCharacteristicWithResponseForDevice')
-      .mockImplementation(() => {
-        throw new Error('cannot read values because BLE is shutdown.');
-      });
+      .mockRejectedValue(new Error('cannot write values because BLE is shutdown.'));
+    
     rowData = {
       index: 0,
       item: { id: 1, charactersticId: UUIDMappingMS700.speakerOutput },
     };
-    toastSpy = jest.spyOn(Toast, 'show');
+    
+    toastSpy = jest.spyOn(Utils, 'showToast');
   });
-  it('should toggle the mute/unmute output setting onto BLE ', () => {
-    store.dispatch(toggleMuteOutputSettings(rowData));
+  
+  afterEach(() => {
+    // Clean up spies - CRITICAL for test isolation
+    if (writeSpy) {
+      writeSpy.mockRestore();
+    }
+    if (toastSpy) {
+      toastSpy.mockRestore();
+    }
+    // Clean up connected device and settings
+    rendererAct(() => {
+      store.dispatch(updateAuthDevices('connectedDevice', {}));
+      store.dispatch(updateVolumeSettingsFields('outputVolumeSettings', []));
+    });
+  });
+  
+  it('should toggle the mute/unmute output setting onto BLE ', async () => {
+    await rendererAct(async () => {
+      await store.dispatch(toggleMuteOutputSettings(rowData));
+    });
     expect(toastSpy).toBeCalled();
   });
 });
 
 describe('writeOutputValueSettings function', () => {
-  let component, rowData, writeSpy;
+  let component, rowData, writeSpy, encodeSpy;
+  
   beforeEach(async () => {
-    await store.dispatch(
-      updateAuthDevices('connectedDevice', { id: 1, localName: 'Brx-emulator' }),
-    );
+    await rendererAct(async () => {
+      await store.dispatch(
+        updateAuthDevices('connectedDevice', { id: 1, localName: 'Brx-emulator' }),
+      );
+    });
+    
     rowData = {
       index: 0,
       item: { id: 1, charactersticId: UUIDMappingMS700.speakerOutput },
     };
+    
     writeSpy = jest.spyOn(
       BleManager,
       'writeCharacteristicWithResponseForDevice',
     );
-    jest.spyOn(base64, 'encode').mockImplementation(() => {
-      return 30;
+    
+    encodeSpy = jest.spyOn(base64, 'encode').mockImplementation(() => {
+      return "30"; // Return string to match expected behavior
     });
 
     component = (
@@ -183,10 +316,28 @@ describe('writeOutputValueSettings function', () => {
     );
     render(component);
   });
+  
+  afterEach(() => {
+    // Clean up spies
+    if (writeSpy) {
+      writeSpy.mockRestore();
+    }
+    if (encodeSpy) {
+      encodeSpy.mockRestore();
+    }
+    // Clean up connected device
+    rendererAct(() => {
+      store.dispatch(updateAuthDevices('connectedDevice', {}));
+    });
+  });
+  
   it('should update output settings values on the BLE', async () => {
-    await store.dispatch(
-      outputSettingsFunctions.writeOutputVolumeSettings(rowData, [30]),
-    );
+    await rendererAct(async () => {
+      await store.dispatch(
+        outputSettingsFunctions.writeOutputVolumeSettings(rowData, [30]),
+      );
+    });
+    
     expect(writeSpy).toBeCalledWith(
       1,
       UUIDMappingMS700.rootServiceUDID,
@@ -196,10 +347,40 @@ describe('writeOutputValueSettings function', () => {
   });
 });
 
-// Skip: Mock implementation throws errors that persist and affect other tests
-describe.skip('writeOutputValueSettings function with error in writing values on BLE', () => {
-  let component, toastSpy, rowData;
-  beforeEach(() => {
+describe('writeOutputValueSettings function with error in writing values on BLE', () => {
+  let component, toastSpy, rowData, writeSpy;
+  
+  beforeEach(async () => {
+    // Setup connected device
+    await rendererAct(async () => {
+      await store.dispatch(
+        updateAuthDevices('connectedDevice', { id: 1, localName: 'Brx-emulator' }),
+      );
+      
+      // Initialize outputVolumeSettings in store
+      await store.dispatch(
+        updateVolumeSettingsFields('outputVolumeSettings', [
+          {
+            settingName: 'Speaker Output',
+            value: '-10',
+            charactersticId: 'asdfghjkl',
+            isMuted: false,
+            muteCharacter: UUIDMappingMS700.muteSpeakerOutput,
+          },
+        ])
+      );
+    });
+    
+    rowData = { index: 0, item: { id: 1, charactersticId: 'asdfghjkl' } };
+    
+    // Setup spy that throws error
+    writeSpy = jest
+      .spyOn(BleManager, 'writeCharacteristicWithResponseForDevice')
+      .mockRejectedValue(new Error('cannot write values because BLE is shutdown.'));
+    
+    toastSpy = jest.spyOn(Utils, 'showToast');
+    
+    // Render component
     component = (
       <Provider store={store}>
         <Output />
@@ -207,18 +388,26 @@ describe.skip('writeOutputValueSettings function with error in writing values on
     );
     render(component);
   });
-  beforeAll(async () => {
-    store.dispatch(updateAuthDevices('connectedDevice', {}));
-    rowData = { index: 0, item: { id: 1, charactersticId: 'asdfghjkl' } };
-    jest
-      .spyOn(BleManager, 'writeCharacteristicWithResponseForDevice')
-      .mockImplementation(() => {
-        throw new Error('cannot write values because BLE is shutdown.');
-      });
-    toastSpy = jest.spyOn(Toast, 'show');
+  
+  afterEach(() => {
+    // Clean up spies - CRITICAL for test isolation
+    if (writeSpy) {
+      writeSpy.mockRestore();
+    }
+    if (toastSpy) {
+      toastSpy.mockRestore();
+    }
+    // Clean up connected device and settings
+    rendererAct(() => {
+      store.dispatch(updateAuthDevices('connectedDevice', {}));
+      store.dispatch(updateVolumeSettingsFields('outputVolumeSettings', []));
+    });
   });
+  
   it('should get error from BLE when writing output settings on BLE', async () => {
-    await store.dispatch(writeOutputVolumeSettings(rowData, [30]));
+    await rendererAct(async () => {
+      await store.dispatch(writeOutputVolumeSettings(rowData, [30]));
+    });
     expect(toastSpy).toBeCalled();
   });
 });

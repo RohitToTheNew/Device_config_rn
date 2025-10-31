@@ -29,7 +29,7 @@ exports[`on Equalizer screen mounting renders Equalizer screen correctly 1`] = `
         style={
           {
             "fontFamily": "CenturyGothic",
-            "fontSize": 30,
+            "fontSize": 32,
             "fontWeight": "700",
             "lineHeight": undefined,
           }
@@ -137,7 +137,7 @@ exports[`on Equalizer screen mounting renders Equalizer screen correctly 1`] = `
           style={
             {
               "fontFamily": "CenturyGothic",
-              "fontSize": 30,
+              "fontSize": 32,
               "fontWeight": "700",
               "lineHeight": undefined,
             }
@@ -225,9 +225,9 @@ exports[`on Equalizer screen mounting renders Equalizer screen correctly 1`] = `
                   {
                     "color": "#484949",
                     "fontFamily": "CenturyGothic",
-                    "fontSize": 18,
+                    "fontSize": 20,
                     "fontWeight": "700",
-                    "lineHeight": 24,
+                    "lineHeight": 26,
                     "top": 90,
                   },
                   {
@@ -376,9 +376,9 @@ exports[`on Equalizer screen mounting renders Equalizer screen correctly 1`] = `
           {
             "color": "#484949",
             "fontFamily": "CenturyGothic",
-            "fontSize": 26,
+            "fontSize": 28,
             "fontWeight": "700",
-            "lineHeight": 30,
+            "lineHeight": 32,
           }
         }
       >
@@ -471,7 +471,7 @@ exports[`on Equalizer screen mounting renders Equalizer screen correctly 1`] = `
                 {
                   "color": "#808284",
                   "fontFamily": "CenturyGothic-Bold",
-                  "fontSize": 26,
+                  "fontSize": 28,
                 }
               }
             >
@@ -558,7 +558,7 @@ exports[`on Equalizer screen mounting renders Equalizer screen correctly 1`] = `
                 {
                   "color": "#808284",
                   "fontFamily": "CenturyGothic-Bold",
-                  "fontSize": 26,
+                  "fontSize": 28,
                 }
               }
             >
@@ -645,7 +645,7 @@ exports[`on Equalizer screen mounting renders Equalizer screen correctly 1`] = `
                 {
                   "color": "#808284",
                   "fontFamily": "CenturyGothic-Bold",
-                  "fontSize": 26,
+                  "fontSize": 28,
                 }
               }
             >

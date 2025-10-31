@@ -27,6 +27,23 @@ import {
 import { UUIDMappingMS700 } from '../../../src/constants';
 import base64 from 'react-native-base64';
 import Toast from 'react-native-toast-message';
+import Utils from '../../../src/utils';
+
+// Mock Utils to spy on showToast
+jest.mock('../../../src/utils', () => {
+  const actualUtils = jest.requireActual('../../../src/utils');
+  return {
+    __esModule: true,
+    default: {
+      ...actualUtils.default,
+      showToast: jest.fn(),
+      Log: jest.fn(),
+    },
+  };
+});
+
+// Setup fake timers to control animations
+jest.useFakeTimers();
 
 // Clear all mocks before each test
 beforeEach(() => {
@@ -71,11 +88,31 @@ describe('Input volumes settings', () => {
 
 describe('getInputSettingsValues function', () => {
   let component, readSpy;
+  
   beforeEach(async () => {
-    await store.dispatch(
-      updateAuthDevices('connectedDevice', { id: 1, localName: 'Brx-emulator' }),
-    );
-    readSpy = jest.spyOn(BleManager, 'readCharacteristicForDevice');
+    // Setup connected device first
+    await rendererAct(async () => {
+      await store.dispatch(
+        updateAuthDevices('connectedDevice', { id: 1, localName: 'Brx-emulator' }),
+      );
+      
+      // Initialize inputVolumeSettings in store
+      await store.dispatch(
+        updateVolumeSettingsFields('inputVolumeSettings', [
+          {
+            settingName: 'Classroom Microphone',
+            value: '-10',
+            charactersticId: UUIDMappingMS700.classroomMicrophone,
+            isMuted: false,
+            muteCharacter: UUIDMappingMS700.muteClassroomMicrophone,
+          },
+        ])
+      );
+    });
+    
+    // Setup spy
+    readSpy = jest.spyOn(BleManager, 'readCharacteristicForDevice')
+      .mockResolvedValue({ value: 'LTEw' }); // base64 encoded "-10"
 
     component = (
       <Provider store={store}>
@@ -84,9 +121,24 @@ describe('getInputSettingsValues function', () => {
     );
     render(component);
   });
-  // Skip: readSpy not being called - needs more complex test setup
-  it.skip('should fetch input settings from BLE', async () => {
-    await store.dispatch(getInputSettingsValues());
+  
+  afterEach(() => {
+    // Clean up spy
+    if (readSpy) {
+      readSpy.mockRestore();
+    }
+    // Clean up connected device and settings
+    rendererAct(() => {
+      store.dispatch(updateAuthDevices('connectedDevice', {}));
+      store.dispatch(updateVolumeSettingsFields('inputVolumeSettings', []));
+    });
+  });
+  
+  it('should fetch input settings from BLE', async () => {
+    await rendererAct(async () => {
+      await store.dispatch(getInputSettingsValues());
+    });
+    
     expect(readSpy).toBeCalledWith(
       1,
       UUIDMappingMS700.rootServiceUDID,
@@ -101,21 +153,27 @@ describe('getInputSettingsValues function', () => {
 });
 
 describe('writeInputValueSettings function', () => {
-  let component, writeSpy, rowData;
+  let component, writeSpy, rowData, encodeSpy;
+  
   beforeEach(async () => {
-    await store.dispatch(
-      updateAuthDevices('connectedDevice', { id: 1, localName: 'Brx-emulator' }),
-    );
+    await rendererAct(async () => {
+      await store.dispatch(
+        updateAuthDevices('connectedDevice', { id: 1, localName: 'Brx-emulator' }),
+      );
+    });
+    
     rowData = {
       index: 0,
       item: { id: 1, charactersticId: UUIDMappingMS700.classroomMicrophone },
     };
+    
     writeSpy = jest.spyOn(
       BleManager,
       'writeCharacteristicWithResponseForDevice',
     );
-    jest.spyOn(base64, 'encode').mockImplementation(() => {
-      return 30;
+    
+    encodeSpy = jest.spyOn(base64, 'encode').mockImplementation(() => {
+      return "30"; // Return string to match expected behavior
     });
 
     component = (
@@ -125,8 +183,26 @@ describe('writeInputValueSettings function', () => {
     );
     render(component);
   });
+  
+  afterEach(() => {
+    // Clean up spies
+    if (writeSpy) {
+      writeSpy.mockRestore();
+    }
+    if (encodeSpy) {
+      encodeSpy.mockRestore();
+    }
+    // Clean up connected device
+    rendererAct(() => {
+      store.dispatch(updateAuthDevices('connectedDevice', {}));
+    });
+  });
+  
   it('should update input settings values on the BLE', async () => {
-    await store.dispatch(writeInputValueSettings(rowData, [30]));
+    await rendererAct(async () => {
+      await store.dispatch(writeInputValueSettings(rowData, [30]));
+    });
+    
     expect(writeSpy).toBeCalledWith(
       1,
       UUIDMappingMS700.rootServiceUDID,
@@ -136,10 +212,42 @@ describe('writeInputValueSettings function', () => {
   });
 });
 
-// Skip: This test's mock implementation throws errors that persist and affect other tests
-describe.skip('writeInputValueSettings function with error in writing values on BLE', () => {
-  let component, toastSpy, rowData;
-  beforeEach(() => {
+describe('writeInputValueSettings function with error in writing values on BLE', () => {
+  let component, toastSpy, rowData, writeSpy;
+  
+  beforeEach(async () => {
+    // Setup connected device
+    await rendererAct(async () => {
+      await store.dispatch(
+        updateAuthDevices('connectedDevice', { id: 1, localName: 'Brx-emulator' }),
+      );
+      
+      // Initialize inputVolumeSettings in store
+      await store.dispatch(
+        updateVolumeSettingsFields('inputVolumeSettings', [
+          {
+            settingName: 'Classroom Microphone',
+            value: '-10',
+            charactersticId: UUIDMappingMS700.classroomMicrophone,
+            isMuted: false,
+            muteCharacter: UUIDMappingMS700.muteClassroomMicrophone,
+          },
+        ])
+      );
+    });
+    
+    rowData = {
+      index: 0,
+      item: { id: 1, charactersticId: UUIDMappingMS700.classroomMicrophone },
+    };
+    
+    // Setup spy that throws error
+    writeSpy = jest
+      .spyOn(BleManager, 'writeCharacteristicWithResponseForDevice')
+      .mockRejectedValue(new Error('cannot write values because BLE is shutdown.'));
+    
+    toastSpy = jest.spyOn(Utils, 'showToast');
+    
     component = (
       <Provider store={store}>
         <Input />
@@ -147,21 +255,26 @@ describe.skip('writeInputValueSettings function with error in writing values on 
     );
     render(component);
   });
-  beforeAll(async () => {
-    store.dispatch(updateAuthDevices('connectedDevice', {}));
-    rowData = {
-      index: 0,
-      item: { id: 1, charactersticId: UUIDMappingMS700.classroomMicrophone },
-    };
-    jest
-      .spyOn(BleManager, 'writeCharacteristicWithResponseForDevice')
-      .mockImplementation(() => {
-        throw new Error('cannot write values because BLE is shutdown.');
-      });
-    toastSpy = jest.spyOn(Toast, 'show');
+  
+  afterEach(() => {
+    // Clean up spies - CRITICAL for test isolation
+    if (writeSpy) {
+      writeSpy.mockRestore();
+    }
+    if (toastSpy) {
+      toastSpy.mockRestore();
+    }
+    // Clean up connected device and settings
+    rendererAct(() => {
+      store.dispatch(updateAuthDevices('connectedDevice', {}));
+      store.dispatch(updateVolumeSettingsFields('inputVolumeSettings', []));
+    });
   });
+  
   it('should get error from BLE when writing input settings on BLE', async () => {
-    await store.dispatch(writeInputValueSettings(rowData, [30]));
+    await rendererAct(async () => {
+      await store.dispatch(writeInputValueSettings(rowData, [30]));
+    });
     expect(toastSpy).toBeCalled();
   });
 });

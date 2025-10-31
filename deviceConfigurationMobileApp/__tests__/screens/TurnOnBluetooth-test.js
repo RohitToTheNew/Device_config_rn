@@ -73,52 +73,73 @@ describe('TurnOnBluetooth Screen', () => {
 });
 
 describe('on landing to TurnOnBluetoothScreen', () => {
-  let props,
-    bleManager,
-    component,
-    linkingSpy,
-    bluetoothState,
-    getByTestId,
-    scannerSpy;
+  let linkingSpy, BleManagerEnableSpy;
 
   beforeEach(() => {
-    props = { navigation: { navigate: () => jest.fn() } };
-    bleManager = new BleManager(true);
-    component = (
+    // Reset store to PoweredOff state
+    rendererAct(() => {
+      store.dispatch(updateAppModalFields('bluetoothState', 'PoweredOff'));
+    });
+    
+    // Mock Linking.openURL for iOS
+    linkingSpy = jest.spyOn(Linking, 'openURL').mockResolvedValue(true);
+    
+    // Mock BleManager.enable for Android
+    BleManagerEnableSpy = jest.spyOn(
+      require('../../src/config/bleManagerInstance').default,
+      'enable'
+    ).mockImplementation(() => {
+      // Simulate bluetooth turning on
+      store.dispatch(updateAppModalFields('bluetoothState', 'PoweredOn'));
+      return Promise.resolve();
+    });
+  });
+
+  afterEach(() => {
+    if (linkingSpy) {
+      linkingSpy.mockRestore();
+    }
+    if (BleManagerEnableSpy) {
+      BleManagerEnableSpy.mockRestore();
+    }
+    // Clean up store
+    rendererAct(() => {
+      store.dispatch(updateAppModalFields('bluetoothState', 'PoweredOff'));
+    });
+  });
+
+  it('should turnOn bluetooth if it is off', () => {
+    const component = (
       <Provider store={store}>
         <NavigationContainer>
           <TurnOnBluetooth />
         </NavigationContainer>
       </Provider>
     );
-    getByTestId = render(component).getByTestId;
-    linkingSpy = jest.spyOn(Linking, 'openURL').mockImplementation(() => {
-      store.dispatch(updateAppModalFields('bluetoothState', 'PoweredOn'));
-      bleManager.startDeviceScan(
-        null,
-        { allowDuplicates: false },
-        async args => { },
-      );
+    
+    const { getByTestId, getByText } = render(component);
+    
+    // Verify initial render
+    expect(getByText(translate('turnOn'))).toBeTruthy();
+    expect(getByTestId('lottieWave')).toBeTruthy();
+    
+    // Verify initial state is PoweredOff
+    expect(store.getState().app.bluetoothState).toBe('PoweredOff');
+    
+    // Press the turn on button
+    rendererAct(() => {
+      fireEvent.press(getByTestId('turnOnButton'));
     });
-    bluetoothState = store.getState().app.bluetoothState;
-    fireEvent.press(getByTestId('turnOnButton'));
-    scannerSpy = jest.spyOn(bleManager, 'startDeviceScan');
-  });
-
-  // SKIPPED: BleManager is a singleton and requires complex mocking
-  // The Linking.openURL is not being triggered properly in the test environment
-  // Would require refactoring TurnOnBluetooth to accept BleManager as a prop for proper testing
-  it.skip('should turnOn bluetooth if it is off', () => {
-    expect(screen.getByText(translate('turnOn'))).toBeTruthy();
-    expect(screen.getByTestId('lottieWave')).toBeTruthy();
-    expect(bluetoothState).toBe('PoweredOff');
-    expect(linkingSpy).toBeCalled();
-    setTimeout(() => {
-      expect(bluetoothState).toBe('PoweredOn');
-    }, 100);
-    setTimeout(() => {
-      expect(scannerSpy).toBeCalled();
-    }, 100);
+    
+    // Verify that either Linking.openURL (iOS) or BleManager.enable (Android) was called
+    // Since Utils.isIOS determines which one is called, we check if at least one was called
+    const wasCalledCorrectly = linkingSpy.mock.calls.length > 0 || BleManagerEnableSpy.mock.calls.length > 0;
+    expect(wasCalledCorrectly).toBe(true);
+    
+    // If BleManager.enable was called (Android), verify state changed
+    if (BleManagerEnableSpy.mock.calls.length > 0) {
+      expect(store.getState().app.bluetoothState).toBe('PoweredOn');
+    }
   });
 });
 
