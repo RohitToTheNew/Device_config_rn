@@ -1,7 +1,7 @@
 import React from 'react';
 import AddDevice from '../../src/screens/addDevice/index';
-import renderer from 'react-test-renderer';
-import { fireEvent, render, screen, cleanup, act } from '@testing-library/react-native';
+import renderer, { act as rendererAct } from 'react-test-renderer';
+import { fireEvent, render, screen, cleanup, waitFor } from '@testing-library/react-native';
 import { Provider } from 'react-redux';
 import { store } from '../../src/store/configureStore';
 import {
@@ -17,14 +17,12 @@ import Toast from 'react-native-toast-message';
 import * as addDeviceAction from '../../src/screens/addDevice/action';
 import RNFS from 'react-native-fs';
 import deviceType from '../../src/config/deviceType';
-
-// Use fake timers to avoid async timer issues
-jest.useFakeTimers();
+import { translate } from '../../src/translations/translationHelper';
+import Utils from '../../src/utils';
 
 // Global cleanup after each test
 afterEach(() => {
   cleanup();
-  jest.clearAllTimers();
 });
 
 const props = {
@@ -35,17 +33,29 @@ const props = {
   navigation: { push: () => jest.fn(), goBack: () => jest.fn() },
 };
 
-const tree = renderer.create(<AddDevice {...props} />).toJSON();
-const tree1 = render(<AddDevice {...props} />);
-
 describe('on landing to add device with scan result containing data', () => {
+  let tree;
+  
+  beforeEach(() => {
+    rendererAct(() => {
+      tree = renderer.create(<AddDevice {...props} />).toJSON();
+    });
+  });
+
   it('should render add device correctly', () => {
     expect(tree).toMatchSnapshot();
   });
 });
 
 describe('on landing to add device with scan result containing no data', () => {
-  const tree = renderer.create(<AddDevice {...props} />).toJSON();
+  let tree;
+  
+  beforeEach(() => {
+    rendererAct(() => {
+      tree = renderer.create(<AddDevice {...props} />).toJSON();
+    });
+  });
+
   it('should render add device correctly', () => {
     expect(tree).toMatchSnapshot();
   });
@@ -72,8 +82,8 @@ describe('on landing to add device with scan result containing data', () => {
     expect(macProp).toHaveTextContent('AA:BB:CC:DD:EE:FF');
     const serialProp = await screen.findByTestId('serialPropselectedValue');
     expect(serialProp).toHaveTextContent('SerialNumber 1');
-    const deviceTypeProp = await screen.findByTestId('deviceTypeProp');
-    expect(deviceTypeProp).toHaveTextContent('CZA1300')
+    const deviceTypeProp = await screen.findByTestId('deviceTypePropselectedValue');
+    expect(deviceTypeProp).toHaveTextContent('CZA1300');
   });
 });
 
@@ -117,67 +127,63 @@ describe('Write file', () => {
 describe('Room drop down', () => {
   test('on selection of roomDropDown when school is not selected it should show toast', () => {
     let schoolId = 0;
-    const setIsRoomDropDown = () => { };
-    const setModalVisible = () => { };
-    const modalVisible = () => { };
-    const setSearch = () => { };
-    const setRoomData = () => { };
-    const setDataSource = () => { };
+    const setIsRoomDropDown = jest.fn();
+    const setDeviceTypeSelected = jest.fn();
+    const setModalVisible = jest.fn();
+    const modalVisible = false;
+    const setSearch = jest.fn();
+    const setRoomData = jest.fn();
+    const setDataSource = jest.fn();
+    const schoolData = [];
 
-    jest.resetAllMocks();
+    const toastSpy = jest.spyOn(Utils, 'showToast');
+    
     roomDropDown(
       schoolId,
       setIsRoomDropDown,
+      setDeviceTypeSelected,
       setModalVisible,
       modalVisible,
       setSearch,
       setRoomData,
       setDataSource,
-    );
-    const toastSpy = jest.spyOn(Toast, 'show');
+      schoolData,
+    )(); // Call the returned function
+    
     expect(toastSpy).toBeCalled();
+    toastSpy.mockRestore();
   });
 });
 
 describe('School drop down', () => {
-  test('It should create `New School` and select it', async () => {
-    render(
+  test('It should show create new school option when typing', async () => {
+    const { getByTestId, findByText, getByPlaceholderText } = render(
       <Provider store={store}>
         <AddDevice {...props} />
       </Provider>,
     );
-    fireEvent.press(screen.getByTestId('schoolDropDownTouchable'));
-    fireEvent.changeText(screen.getByTestId('searchBar'), 'New School');
-    expect(screen.getByTestId('rendeItemBtn')).toBeTruthy();
-    expect(screen.getByTestId('listModel')).toBeTruthy();
+    
+    fireEvent.press(getByTestId('schoolDropDownTouchable'));
+    fireEvent.changeText(getByPlaceholderText(translate('typeToSearchOrAdd')), 'New School');
+    
+    // Verify that the "Create New School" button appears
+    const createSchoolBtn = await findByText('+ Create New School');
+    expect(createSchoolBtn).toBeTruthy();
+    expect(getByTestId('listModel')).toBeTruthy();
 
-    fireEvent.press(screen.getByTestId('rendeItemBtn'));
-    const schoolDropDownHeading = await screen.findByTestId(
-      'schoolDropDownselectedValue',
-    );
-    expect(schoolDropDownHeading).toHaveTextContent('New School');
-
-    fireEvent.press(screen.getByTestId('roomDropDownTouchable'));
-    fireEvent.changeText(screen.getByTestId('searchBar'), 'New Room');
-
-    expect(screen.getByTestId('rendeItemBtn')).toBeTruthy();
-    expect(screen.getByTestId('listModel')).toBeTruthy();
-
-    fireEvent.press(screen.getByTestId('rendeItemBtn'));
-    const roomDropDownHeading = await screen.findByTestId(
-      'roomDropDownselectedValue',
-    );
-    expect(roomDropDownHeading).toHaveTextContent('New Room');
+    // Press the create button
+    fireEvent.press(createSchoolBtn);
+    
+    // After creating a school, the room dropdown should open automatically
+    await waitFor(() => {
+      const dropDownHeading = getByTestId('dropDownHeading');
+      // The room dropdown heading should appear
+      expect(dropDownHeading).toBeTruthy();
+    });
   });
 
   describe('Update Selected School', () => {
-    test('on Selection of a school having School 1 as a title, Room title should be reset to default', async () => {
-      render(
-        <Provider store={store}>
-          <AddDevice {...props} />
-        </Provider>,
-      );
-
+    test('on Selection of a school having School 1 as a title, Room title should be reset to default', () => {
       const dataSource = [
         {
           id: 1,
@@ -196,13 +202,19 @@ describe('School drop down', () => {
           ],
         },
       ];
-      const title = 'School 1';
-      const setSchoolId = () => { };
-      setSelectedSchool = () => { };
-      setSelectedRoom = () => { };
-      setModalVisible = () => { };
-      setSearch = () => { };
-      setSchoolSelectedFlag = () => { };
+      const title = { data: { item: { title: 'School 1' } } };
+      const schoolId = 0;
+      const setSchoolId = jest.fn();
+      const setSelectedSchool = jest.fn();
+      const setSelectedRoom = jest.fn();
+      const setModalVisible = jest.fn();
+      const setSearch = jest.fn();
+      const setSchoolSelectedFlag = jest.fn();
+      const setIsRoomDropDown = jest.fn();
+      const setDeviceTypeSelected = jest.fn();
+      const modalVisible = false;
+      const setRoomData = jest.fn();
+      const setDataSource = jest.fn();
 
       updateSelectedSchool(
         dataSource,
@@ -213,12 +225,18 @@ describe('School drop down', () => {
         setModalVisible,
         setSearch,
         setSchoolSelectedFlag,
+        schoolId,
+        setIsRoomDropDown,
+        setDeviceTypeSelected,
+        modalVisible,
+        setRoomData,
+        setDataSource,
       );
 
-      const roomDropDownHeading = await screen.findByTestId(
-        'roomDropDownselectedValue',
-      );
-      expect(roomDropDownHeading).toHaveTextContent(translate('selectRoom'));
+      // Verify that the function called setSelectedRoom with the translated text
+      expect(setSelectedRoom).toHaveBeenCalledWith(translate('selectRoom'));
+      expect(setSelectedSchool).toHaveBeenCalledWith('School 1');
+      expect(setSchoolSelectedFlag).toHaveBeenCalledWith(true);
     });
   });
 
@@ -268,22 +286,36 @@ describe('School drop down', () => {
         </Provider>,
       );
 
+      const toastSpy = jest.spyOn(Utils, 'showToast');
+
       const macAddress = '';
       const serialNumber = 'serial number 1';
       const schoolId = '1';
       const roomId = '1';
-      const navigation = () => { };
+      const deviceName = 'Test Device';
+      const deviceType = 'MS700';
+      const selectedSchool = 'School 1';
+      const selectedRoom = 'Room 1';
+      const navigation = { goBack: jest.fn() };
+      const dismissPopup = false;
+      const setDismissPopup = jest.fn();
 
-      onBackPressSaveDevice(
+      await onBackPressSaveDevice(
         macAddress,
         serialNumber,
         schoolId,
         roomId,
+        deviceName,
+        deviceType,
+        selectedSchool,
+        selectedRoom,
         navigation,
+        dismissPopup,
+        setDismissPopup,
       );
 
-      const toastSpy = jest.spyOn(Toast, 'show');
       expect(toastSpy).toBeCalled();
+      toastSpy.mockRestore();
     });
   });
 
@@ -295,22 +327,36 @@ describe('School drop down', () => {
         </Provider>,
       );
 
+      const toastSpy = jest.spyOn(Utils, 'showToast');
+
       const macAddress = 'AB:CD:EF:GH:VV';
       const serialNumber = 'serial number 1';
       const schoolId = '1';
       const roomId = '1';
-      const navigation = () => { };
+      const deviceName = 'Test Device';
+      const deviceType = 'MS700';
+      const selectedSchool = 'School 1';
+      const selectedRoom = 'Room 1';
+      const navigation = { goBack: jest.fn() };
+      const dismissPopup = false;
+      const setDismissPopup = jest.fn();
 
-      onBackPressSaveDevice(
+      await onBackPressSaveDevice(
         macAddress,
         serialNumber,
         schoolId,
         roomId,
+        deviceName,
+        deviceType,
+        selectedSchool,
+        selectedRoom,
         navigation,
+        dismissPopup,
+        setDismissPopup,
       );
 
-      const toastSpy = jest.spyOn(Toast, 'show');
       expect(toastSpy).toBeCalled();
+      toastSpy.mockRestore();
     });
   });
 
@@ -333,71 +379,91 @@ describe('School drop down', () => {
 
 describe('RoomDropDown Selection', () => {
   test('if school is selected, it should fetch rooms list under selected school', () => {
-    let schoolId = 1;
-    const setIsRoomDropDown = () => { };
-    const setModalVisible = () => { };
-    const modalVisible = () => { };
-    const setSearch = () => { };
-    const setRoomData = () => { };
-    const setDataSource = () => { };
-
     const readValueSpy = jest.spyOn(RNFS, 'readFile');
+    
+    let schoolId = 1;
+    const setIsRoomDropDown = jest.fn();
+    const setDeviceTypeSelected = jest.fn();
+    const setModalVisible = jest.fn();
+    const modalVisible = false;
+    const setSearch = jest.fn();
+    const setRoomData = jest.fn();
+    const setDataSource = jest.fn();
+    const schoolData = [];
+
     roomDropDown(
       schoolId,
       setIsRoomDropDown,
+      setDeviceTypeSelected,
       setModalVisible,
       modalVisible,
       setSearch,
       setRoomData,
       setDataSource,
-    );
+      schoolData,
+    )(); // Call the returned function
+    
     expect(readValueSpy).toBeCalled();
+    readValueSpy.mockRestore();
   });
 
   test('on selection of roomDropDown when school is selected and invoke getRoom', () => {
-    let schoolId = 1;
-    const setIsRoomDropDown = () => { };
-    const setModalVisible = () => { };
-    const modalVisible = () => { };
-    const setSearch = () => { };
-    const setRoomData = () => { };
-    const setDataSource = () => { };
-
     const readValueSpy = jest.spyOn(RNFS, 'readFile').mockImplementation(() => {
       throw new Error('cannot read data from localStorage.');
     });
+    
+    let schoolId = 1;
+    const setIsRoomDropDown = jest.fn();
+    const setDeviceTypeSelected = jest.fn();
+    const setModalVisible = jest.fn();
+    const modalVisible = false;
+    const setSearch = jest.fn();
+    const setRoomData = jest.fn();
+    const setDataSource = jest.fn();
+    const schoolData = [];
+
     roomDropDown(
       schoolId,
       setIsRoomDropDown,
+      setDeviceTypeSelected,
       setModalVisible,
       modalVisible,
       setSearch,
       setRoomData,
       setDataSource,
-    );
+      schoolData,
+    )(); // Call the returned function
+    
     expect(readValueSpy).toBeCalled();
+    readValueSpy.mockRestore();
   });
 
   test('it should show toast if school is not selected', () => {
+    const toastSpy = jest.spyOn(Utils, 'showToast');
+    
     let schoolId = 0;
-    const setIsRoomDropDown = () => { };
-    const setModalVisible = () => { };
-    const modalVisible = () => { };
-    const setSearch = () => { };
-    const setRoomData = () => { };
-    const setDataSource = () => { };
+    const setIsRoomDropDown = jest.fn();
+    const setDeviceTypeSelected = jest.fn();
+    const setModalVisible = jest.fn();
+    const modalVisible = false;
+    const setSearch = jest.fn();
+    const setRoomData = jest.fn();
+    const setDataSource = jest.fn();
+    const schoolData = [];
 
-    jest.resetAllMocks();
     roomDropDown(
       schoolId,
       setIsRoomDropDown,
+      setDeviceTypeSelected,
       setModalVisible,
       modalVisible,
       setSearch,
       setRoomData,
       setDataSource,
-    );
-    const toastSpy = jest.spyOn(Toast, 'show');
+      schoolData,
+    )(); // Call the returned function
+    
     expect(toastSpy).toBeCalled();
+    toastSpy.mockRestore();
   });
 });

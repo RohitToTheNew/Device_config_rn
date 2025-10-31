@@ -4,18 +4,26 @@ jest.mock('../../src/services/bleDevices/action', () => {
   return {
     ...originalModule,
     handleUpdateProcess: jest.fn((devicePressed, passcode, navigation, callback) => {
-      return (dispatch) => {
-        callback && callback();
-        navigation.navigate('HomeScreen');
-        return Promise.resolve();
-      };
+      // Execute immediately - call callback and navigate synchronously
+      setTimeout(() => {
+        if (callback) callback();
+        if (navigation && navigation.navigate) {
+          navigation.navigate('HomeScreen');
+        }
+      }, 0);
+      // Return a thunk for Redux
+      return (dispatch) => Promise.resolve();
     }),
     handleAuthProcess: jest.fn((devicePressed, passcode, navigation, successCallback, errorCallback) => {
-      return (dispatch) => {
-        successCallback && successCallback();
-        navigation.navigate('HomeScreen');
-        return Promise.resolve();
-      };
+      // Execute immediately - call callback and navigate synchronously  
+      setTimeout(() => {
+        if (successCallback) successCallback();
+        if (navigation && navigation.navigate) {
+          navigation.navigate('HomeScreen');
+        }
+      }, 0);
+      // Return a thunk for Redux
+      return (dispatch) => Promise.resolve();
     }),
   };
 });
@@ -35,13 +43,9 @@ import SetPasscode from '../../src/screens/setPasscode';
 import { updateAppModalFields } from '../../src/services/app/action';
 import { updateAuthDevices } from '../../src/services/authDevices/action';
 
-// Use fake timers to handle async operations
-jest.useFakeTimers();
-
 // Clean up after each test
 afterEach(() => {
   cleanup();
-  jest.clearAllTimers();
 });
 
 describe('on landing to SetPasscode screen', () => {
@@ -81,11 +85,19 @@ describe('SetPasscode screen test with update passcode flow', () => {
       navigation,
     };
     // Set up connectedDevice for the update process
-    store.dispatch(updateAuthDevices('connectedDevice', { id: 'Brx-emulator', localName: 'Brx-emulator', deviceType: 'MS700' }));
-    store.dispatch(updateAppModalFields('isFoldableDevice', false));
-    store.dispatch(updateAuthDevices('authenticatedDevices', []));
+    act(() => {
+      store.dispatch(updateAuthDevices('connectedDevice', { id: 'Brx-emulator', localName: 'Brx-emulator', deviceType: 'MS700' }));
+      store.dispatch(updateAppModalFields('isFoldableDevice', false));
+      store.dispatch(updateAuthDevices('authenticatedDevices', []));
+    });
     render(<SetPasscode {...props} />);
     setPasscodeHeading = screen.getByTestId('setPasscodeHeading');
+  });
+
+  afterEach(() => {
+    act(() => {
+      store.dispatch(updateAuthDevices('connectedDevice', {}));
+    });
   });
 
   it('should render the update passcode screen with textinput', () => {
@@ -120,10 +132,18 @@ describe('SetPasscode screen test with login with passcode flow', () => {
       },
       navigation,
     };
-    store.dispatch(updateAppModalFields('isFoldableDevice', false));
-    store.dispatch(updateAuthDevices('authenticatedDevices', []));
+    act(() => {
+      store.dispatch(updateAppModalFields('isFoldableDevice', false));
+      store.dispatch(updateAuthDevices('authenticatedDevices', []));
+    });
     render(<SetPasscode {...props} />);
     setPasscodeHeading = screen.getByTestId('setPasscodeHeading');
+  });
+
+  afterEach(() => {
+    act(() => {
+      store.dispatch(updateAuthDevices('connectedDevice', {}));
+    });
   });
 
   it('should render the login with passcode screen with textinput', async () => {

@@ -22,7 +22,8 @@
     "reset": "react-native start --reset-cache",
     "stop": "lsof -ti:8081 | xargs kill -9 || true",
     "clean-all": "yarn stop && watchman watch-del-all && rm -rf node_modules && yarn install && cd android && ./gradlew clean && cd ..",
-    "fresh-start": "yarn stop && watchman watch-del-all && yarn start --reset-cache"
+    "fresh-start": "yarn stop && watchman watch-del-all && yarn start --reset-cache",
+    "test:failure": "yarn test --onlyFailures"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.2.0",

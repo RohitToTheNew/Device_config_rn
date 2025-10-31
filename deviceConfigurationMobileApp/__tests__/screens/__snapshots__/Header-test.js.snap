@@ -1,3 +1,261 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`on Header mounting renders Header correctly 1`] = `null`;
+exports[`on Header mounting renders Header correctly 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "marginHorizontal": 32,
+      "marginTop": 46,
+    }
+  }
+>
+  <Text
+    numberOfLines={1}
+    style={
+      {
+        "color": "#FB8C00",
+        "flex": 1,
+        "fontFamily": "CenturyGothic",
+        "fontSize": 34,
+        "fontWeight": "700",
+      }
+    }
+  />
+  <Modal
+    animationType="fade"
+    onRequestClose={[Function]}
+    transparent={true}
+  >
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "flex": 1,
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "alignSelf": "flex-end",
+            "backgroundColor": "white",
+            "borderRadius": 16,
+            "elevation": 4,
+            "justifyContent": "flex-start",
+            "marginHorizontal": 50,
+            "marginTop": 90,
+            "minWidth": 340,
+            "paddingEnd": 32,
+            "paddingStart": 24,
+            "paddingVertical": 24,
+            "shadowColor": "#000",
+            "shadowOffset": {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.25,
+            "shadowRadius": 4,
+          }
+        }
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 24,
+              "opacity": 1,
+            }
+          }
+        >
+          <
+            height={40}
+            width={40}
+          />
+          <Text
+            style={
+              {
+                "color": "#1A1C1C",
+                "fontFamily": "CenturyGothic-Bold",
+                "fontSize": 26,
+                "marginBottom": 4,
+                "marginLeft": 32,
+                "marginTop": 2,
+              }
+            }
+          >
+            [missing "en.identify" translation]
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={false}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 24,
+              "opacity": 1,
+            }
+          }
+        >
+          <
+            height={40}
+            width={40}
+          />
+          <Text
+            style={
+              {
+                "color": "#1A1C1C",
+                "fontFamily": "CenturyGothic-Bold",
+                "fontSize": 26,
+                "marginBottom": 4,
+                "marginLeft": 32,
+                "marginTop": 2,
+              }
+            }
+          >
+            [missing "en.resetPasscode" translation]
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "opacity": 1,
+            }
+          }
+        >
+          <
+            height={40}
+            width={40}
+          />
+          <Text
+            style={
+              {
+                "color": "#1A1C1C",
+                "fontFamily": "CenturyGothic-Bold",
+                "fontSize": 26,
+                "marginBottom": 4,
+                "marginLeft": 32,
+                "marginTop": 2,
+              }
+            }
+          >
+            [missing "en.enablePOEOverride" translation]
+          </Text>
+        </View>
+      </View>
+    </View>
+  </Modal>
+</View>
+`;
